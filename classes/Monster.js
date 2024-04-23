@@ -8,6 +8,14 @@ class Monster {
     this.defense = defense;
     this.luck = luck;
     this.rest = false;
+
+    this.initialStats = {
+      hp: hp,
+      attack: attack,
+      defense: defense,
+      luck: luck
+    };
+    this.levelStats = { ...this.initialStats };
   }
 
   attack(opponent) {
