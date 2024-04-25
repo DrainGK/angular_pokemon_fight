@@ -1,5 +1,5 @@
 class Monster {
-  constructor(name, hp, attack, defense, luck, points) {
+  constructor(name, hp, attack, defense, luck, points,pic) {
     this.name = name;
     this.level = 1;
     this.points = points;
@@ -8,14 +8,8 @@ class Monster {
     this.defense = defense;
     this.luck = luck;
     this.rest = false;
-
-    this.initialStats = {
-      hp: hp,
-      attack: attack,
-      defense: defense,
-      luck: luck
-    };
-    this.levelStats = { ...this.initialStats };
+    this.pic = pic;
+    this.levelStats = {};
   }
 
   attack(opponent) {

@@ -18,19 +18,20 @@
 
     <section class="nav">
         <span class="icon-container monster-button">
-            <img class="icon" src="./monster-8bit-pet-11-svgrepo-com.svg" alt="">
+            <img class="icon" src="./img/rabbit-monster.svg" alt="">
         </span>
-        <span class="icon-container">zob</span>
-        <span class="icon-container">zob</span>
-        <span class="icon-container">zob</span>
+        <span class="icon-container fight-button">
+            <img class="icon" src="./sword-icon.svg" alt="">
+        </span>
+        <span class="icon-container shop-button">
+            <img class="icon" src="./shop-icon.svg" alt="">
+        </span>
+        <span class="icon-container quest-button">
+            <img class="icon" src="./quest-icon.svg" alt="">
+        </span>
     </section>
 
-    <section class="create-monster-container">
-        <div class="icon-container plus">+</div>
-        <div class="icon-container plus">+</div>
-        <div class="icon-container plus">+</div>
-        <div class="icon-container plus">+</div>
-    </section>
+    <section id="screen"></section>
     
     <div class="modal create-monster">
         <h2 class="form-title">Create your monster</h2>
@@ -39,12 +40,12 @@
                 <label for="monsterName">Monster name</label>
                 <input class="input" type="text" name="monsterName" id="monsterName" required>
             </div>
-            <div class="sprite-input-container container">
-                <label for="monsterSprite">Add a sprite</label>
-                <div class="overlay input">
-                    <input class="input file" type="file" name="monsterSprite" id="monsterSprite">
-                </div>
+            <div class="input-sprite-container container">
+                <div class="sprite" id="selectedMonsterImage"></div>
+                <label for="monsterSprite">Choose your monster</label>
+                <select class="input" name="monsterSprite" id="monsterSprite"></select>
             </div>
+            
             <div class="stats-input-container">
                 <h2>stats</h2>
                 <p id="points">remaining points: 10</p>
@@ -71,7 +72,8 @@
             <button type="submit" id="arise">Arise!</button>
         </form>
     </div>
-    <button id="levelUp">Level up</button>
+    <button id="levelUp" class="button">Level up</button>
+    <script src="/classes/Data/menu.js"></script>
     <script src="ui.js"></script>
     <script src="./classes/Player.js"></script>
     <script src="./classes/Monster.js"></script>
