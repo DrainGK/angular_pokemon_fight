@@ -1,7 +1,7 @@
 class Monster {
-  constructor(name, hp, attack, defense, luck, points,pic) {
+  constructor(name, hp, attack, defense, luck, points,pic,level) {
     this.name = name;
-    this.level = 1;
+    this.level = level;
     this.points = points;
     this.life = hp;
     this.attack = attack;
@@ -9,6 +9,7 @@ class Monster {
     this.luck = luck;
     this.rest = false;
     this.pic = pic;
+    this.current = 1;
     this.levelStats = {};
   }
 

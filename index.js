@@ -4,7 +4,6 @@ const points = document.getElementById("points");
 const inputs = document.querySelectorAll(".number");
 let initialStats = {};
 
-
 function initializeForm() {
   createform.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -73,7 +72,8 @@ function createMonster() {
   const attack = parseInt(document.getElementById("monsterAttack").value);
   const defense = parseInt(document.getElementById("monsterDefense").value);
   const luck = parseInt(document.getElementById("monsterLuck").value);
-  const pic = document.getElementById('monsterSprite').value;
+  const sprites = JSON.parse(document.getElementById('monsterSprite').value);
+  document.querySelector(".input-sprite-container").style.display = "flex";
 
   currentMonster = new Monster(
     name,
@@ -82,7 +82,8 @@ function createMonster() {
     defense,
     luck,
     remainingPoints,
-    pic
+    sprites,
+    1
   );
   currentMonster.levelStats = { ...initialStats };
   console.log(currentMonster.pic);
@@ -139,6 +140,8 @@ function switchToUpdateMode(monster) {
 
   document.getElementById("monsterName").value = monster.name;
   document.getElementById("monsterName").disabled = true;
+
+  document.querySelector(".input-sprite-container").style.display = "none";
 }
 
 function displayTeam(){
@@ -146,10 +149,11 @@ function displayTeam(){
   plusButton.forEach((button)=> {
     const index = button.getAttribute('data-monster');
     if(team[index] != null || team[index] != undefined){
+      let id = team[index].current
       button.classList.add("pokemon-resume")
       button.innerHTML = `
       <h2>${team[index].name} level ${team[index].level}</h2>
-        <img src="./img/${team[index].pic}.svg" height="80" width="80"/> 
+        <img src="./img/monsters/${team[index].pic[id]?.front ??team[index].pic[1].front}.png" height="80" width="80"/> 
         <div class="resume">
           <p>Hp ${team[index].life}</p>
           <p>Atk ${team[index].attack}</p>
@@ -173,6 +177,11 @@ function levelUp(){
   console.log("level up");
   modal.style.display = "flex";
   currentMonster.levelUp();
+  if(currentMonster.level === 4 ){
+    currentMonster.current = 2;
+  } else if (currentMonster.level === 7){
+    currentMonster.current = 3;
+  }
   remainingPoints = currentMonster.points;
   switchToUpdateMode(currentMonster);
   updatePointsDisplay();

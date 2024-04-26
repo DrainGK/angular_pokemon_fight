@@ -20,7 +20,8 @@ function populateSelect() {
     const select = document.getElementById('monsterSprite');
 
     Object.entries(monsterDex).forEach(([key, value]) => {
-        let option = new Option(key.replace(/Monster/, ' Monster'), value);
+        // let sprites = value[2] ? value[2].front : value[1].back;
+        let option = new Option(key.replace(/Monster/, ' Monster'), JSON.stringify(value));
         select.appendChild(option);
     });
 }
@@ -28,8 +29,11 @@ function populateSelect() {
 function showSelectedMonster(){
     const select = document.getElementById('monsterSprite');
     const imageContainer = document.getElementById('selectedMonsterImage');
-    const selectedValue = select.value;
-    imageContainer.innerHTML = `<img src="./img/${selectedValue}.svg" alt="${selectedValue}" style="height: 80px;">`;
+    const selectedValue = JSON.parse(select.value);
+
+    const firstKey = Object.keys(selectedValue)[0];
+    const spritePath = selectedValue[firstKey].front;
+    imageContainer.innerHTML = `<img src="./img/monsters/${spritePath}.png" alt="${selectedValue}" style="height: 80px;">`;
 }
 
 document.getElementById('monsterSprite').addEventListener('change', showSelectedMonster);
@@ -50,6 +54,7 @@ monsterButton.addEventListener("click", function () {
 
 fightButton.addEventListener("click", function () {
   screen.innerHTML = menuCat.fight;
+  setupChallengers();
 });
 
 shopButton.addEventListener("click", function () {

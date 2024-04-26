@@ -262,6 +262,11 @@ h1{
     gap: 1rem 0;
 }
 
+.pokemon-resume > img{
+    width: 80px;
+    height: 80px;
+}
+
 .pokemon-resume > *{
     width: 150px;
 }
