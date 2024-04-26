@@ -168,9 +168,9 @@ function displayTeam(){
 window.onload = initializeForm;
 initializeStats();
 
-levelUpButton.addEventListener("click", function () {
-  levelUp()
-});
+// levelUpButton.addEventListener("click", function () {
+//   levelUp()
+// });
 
 function levelUp(){
   formTitle.innerText = "Upgrade your monster"

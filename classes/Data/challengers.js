@@ -49,14 +49,45 @@ console.log(challengers.villagers[4].team);
 function setupChallengers(){
     const challengersIcon = document.querySelector(".challengers-icon");
     const villagers = Object.values(challengers.villagers);
+
+    challengersIcon.innerHTML = "";
     
     villagers.forEach(pnj => {
-        let button = document.createElement('button');
-        button.textContent = pnj.name; // Perhaps you want to use an image here?
+        // Create a container for each villager
+        let button = document.createElement('div');
+        button.classList.add("icon-pnj"); // Adding class before setting inner HTML
+        button.innerHTML = `
+        <span class="icon-container" style="background-image: url('./img/challengers/villagers/${pnj.pic}'); background-repeat: no-repeat; background-size: cover">
+        </span>
+        `; // Closed img tag and added alt attribute
+
+        // Attach an event listener to the new div
         button.addEventListener('click', () => {
-            console.log(pnj.name); // Example action
+            setupArena(pnj); // Logs the name of the clicked villager
         });
+
+        // Append the button to the challengersIcon container
         challengersIcon.appendChild(button);
-        button.classList.add("button")
     });
+}
+
+function setupArena(pnj){
+    const challengersIcon = document.querySelector(".challengers-icon");
+    console.log(pnj.name);
+    const index = 3;
+    const monster = pnj.team[index]
+    const arena = `
+        <div> 
+            <div>
+                <h2>${team[0].name}</h2>
+                <img src="./img/monsters/${team[0].pic[team[0].current].back}.png" />
+            </div>
+            <div>
+                <h2>${monster.name}</h2>
+                <img src="./img/monsters/${monster.pic}.png" />
+            </div>
+        </div>
+    `;
+
+    challengersIcon.innerHTML = arena;
 }
