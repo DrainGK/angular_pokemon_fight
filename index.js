@@ -168,18 +168,18 @@ function displayTeam(){
 window.onload = initializeForm;
 initializeStats();
 
-// levelUpButton.addEventListener("click", function () {
-//   levelUp()
-// });
+levelUpButton.addEventListener("click", function () {
+  levelUp()
+});
 
 function levelUp(){
   formTitle.innerText = "Upgrade your monster"
   console.log("level up");
   modal.style.display = "flex";
   currentMonster.levelUp();
-  if(currentMonster.level === 4 ){
+  if(currentMonster.level === 4 && currentMonster.pic[2]){
     currentMonster.current = 2;
-  } else if (currentMonster.level === 7){
+  } else if (currentMonster.level === 7 && currentMonster.pic[3]){
     currentMonster.current = 3;
   }
   remainingPoints = currentMonster.points;
@@ -187,4 +187,5 @@ function levelUp(){
   updatePointsDisplay();
   console.log(currentMonster);
   console.log(team);
+  setupArena(currentPNJ, indexPNJ)
 } 
