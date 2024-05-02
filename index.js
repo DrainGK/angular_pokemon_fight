@@ -2,6 +2,7 @@ const createform = document.getElementById("createMonsterForm");
 const levelUpButton = document.getElementById("levelUp");
 const points = document.getElementById("points");
 const inputs = document.querySelectorAll(".number");
+let gold = 0;
 let initialStats = {};
 
 function initializeForm() {
@@ -122,12 +123,16 @@ function updateMonster() {
     document.getElementById("monsterDefense").value
   );
   currentMonster.luck = parseInt(document.getElementById("monsterLuck").value);
+  currentMonster.currentHp = currentMonster.life;
+  currentMonster.maxHp = currentMonster.life;
+  console.log(currentMonster.life, currentMonster.currentHp);
 
   console.log(currentMonster);
   alert(`${currentMonster.name} updated successfully!`);
   document.getElementById("formMode").value = "create";
   currentMonster.levelStats = { ...initialStats };
   displayTeam();
+  setupArena(currentPNJ, indexPNJ);
 }
 
 function switchToUpdateMode(monster) {
@@ -187,5 +192,4 @@ function levelUp(){
   updatePointsDisplay();
   console.log(currentMonster);
   console.log(team);
-  setupArena(currentPNJ, indexPNJ)
 } 

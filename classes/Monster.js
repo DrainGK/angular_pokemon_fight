@@ -14,6 +14,7 @@ class Monster {
 
     this.maxHp = this.life;
     this.currentHp = this.life;
+    this.isDodge = false;
   }
 
   fight(opponent) {
@@ -32,8 +33,8 @@ class Monster {
       }
   
           console.log(`Damage dealt by ${this.name} to ${opponent.name}: ${damage}`);
-          opponent.life -= damage;  // Reduce opponent's life
-          console.log(`Remaining life of ${opponent.name}: ${opponent.life}`);
+          opponent.currentHp -= damage;  // Reduce opponent's life
+          console.log(`Remaining life of ${opponent.name}: ${opponent.currentHp}`);
           return damage;  // Returning damage for information, not necessary for functionality
     } else {
       console.log(`${this.name} is too tired to perform an attack`);
@@ -62,16 +63,20 @@ class Monster {
       (this.luck / 10) * (maxDodgeChance - baseDodgeChance);
     let totalDodgeChance = baseDodgeChance + luckContribution;
     console.log(Math.random() < totalDodgeChance);
+    if(Math.random() < totalDodgeChance){
+      this.isDodge = !this.isDodge;
+    }
     return Math.random() < totalDodgeChance;
   }
 
   levelUp() {
     this.level++;
     this.points += 10;
+
   }
 
   die() {
-    if (this.life <= 0) {
+    if (this.currentHp <= 0) {
       alert("The monster is K.O");
     }
   }

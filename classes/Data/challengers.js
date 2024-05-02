@@ -3,6 +3,7 @@ const challengers = {
     1: {
       name: "Gamin",
       pic: "gamin.png",
+      reward: 100,
       team: [
         new Monster(
           "Bug monster",
@@ -49,6 +50,7 @@ const challengers = {
     2: {
       name: "Hage",
       pic: "hage.png",
+      reward: 250,
       team: [
         new Monster(
           "Cat monster",
@@ -95,6 +97,7 @@ const challengers = {
     3: {
       name: "Jakson",
       pic: "jakson.png",
+      reward: 500,
       team: [
         new Monster(
           "Do monster",
@@ -141,6 +144,7 @@ const challengers = {
     4: {
       name: "Angry",
       pic: "angry.png",
+      reward: 1000,
       team: [
         new Monster(
           "Bug monster",
@@ -174,10 +178,10 @@ const challengers = {
         ),
         new Monster(
           "Dofin Monster (full power)",
-          40,
-          40,
-          40,
-          40,
+          20,
+          20,
+          20,
+          20,
           0,
           monsterDex.doMonster[2].front,
           4
@@ -208,9 +212,17 @@ function setupChallengers() {
         `; // Closed img tag and added alt attribute
 
     // Attach an event listener to the new div
-    button.addEventListener("click", () => {
-      setupArena(pnj); // Logs the name of the clicked villager
-    });
+    const allAlive = checkAllMonstersAlive(pnj);
+    console.log("All monsters alive:", allAlive);
+    function checkAllMonstersAlive(pnj) {
+        return pnj.team.every(monster => monster.currentHp > 0);
+    }
+    if(allAlive){
+        button.addEventListener("click", () => {
+            indexPNJ = 0;
+            setupArena(pnj); // Logs the name of the clicked villager
+        });
+    }
 
     // Append the button to the challengersIcon container
     challengersIcon.appendChild(button);
@@ -256,7 +268,7 @@ function setupArena(pnj) {
                         <p class="name">${currentMonster.name}</p>
                         <p>Lv.${currentMonster.level}</p>
                     </div>
-                    <p class="hp">hp ${currentMonster.life} / ${
+                    <p class="hp">hp ${currentMonster.currentHp} / ${
     currentMonster.life
   }</p>
                 </div>
@@ -270,7 +282,7 @@ function setupArena(pnj) {
                         <p class="name">${monster.name}</p>
                         <p>Lv.${monster.level}</p>
                     </div>
-                    <p class="hp">hp ${monster.life} / ${monster.life}</p>
+                    <p class="hp">hp ${monster.currentHp} / ${monster.maxHp}</p>
                 </div>
             </div>
         </div>
@@ -295,13 +307,32 @@ const fightMenu = `
 </div>
 `;
 
-function checkOpponentKO() {
-  opponent = currentPNJ.team[indexPNJ];
-  if (opponent.life <= 0) {
-    indexPNJ++;
-    setupArena(currentPNJ, indexPNJ);
-  }
+function clearElementContents(element) {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
 }
+
+function allKO() {
+    if (currentPNJ && currentPNJ.team.every(monster => monster.currentHp <= 0)) {
+        console.log("All monsters KO: true, updating screen with new menu...");
+        clearElementContents(screen); // Clearing the content explicitly
+        screen.innerHTML = menuCat.fight;
+        gold += currentPNJ.reward;
+        console.log(gold);
+        console.log(screen.innerHTML); // Log the current innerHTML
+    }
+}
+
+function checkOpponentKO() {
+    opponent = currentPNJ.team[indexPNJ];
+    if(opponent.currentHp <= 0 && indexPNJ <= 2) {
+        indexPNJ++;
+    }
+    setupArena(currentPNJ, indexPNJ);
+    allKO();
+}
+
 
 function attack(pnj, index) {
   opponent = pnj.team[index];
@@ -310,6 +341,8 @@ function attack(pnj, index) {
   checkOpponentKO();
   console.log(indexPNJ);
   setupArena(currentPNJ, indexPNJ);
+  console.log(currentMonster.life, currentMonster.currentHp, currentMonster.maxHp);
+  opponentMove(opponent, currentMonster);
 }
 
 function superAttackMove(pnj, index) {
@@ -318,12 +351,40 @@ function superAttackMove(pnj, index) {
   currentMonster.superAttack(opponent);
   checkOpponentKO();
   setupArena(currentPNJ, indexPNJ);
+  opponentMove(opponent, currentMonster);
+
 }
 
 function dodgeMove() {
   currentMonster.dodge();
+  console.log(currentMonster.isDodge);
+  opponentMove(opponent, currentMonster);
+}
+
+function opponentMove(monster, opponent){
+    const actions = ['fight', 'superAttack', 'dodge'];
+    const randomAction = actions[Math.floor(Math.random()*actions.length)];
+
+    switch (randomAction){
+        case 'fight':
+            console.log(`${monster.name} chooses to fight`);
+            monster.fight(opponent);
+            break;
+        case 'superAttack':
+            console.log(`${monster.name} chooses to do a super Attack`);
+            monster.superAttack(opponent);
+            break;
+        case 'dodge':
+            console.log(`${monster.name} chooses to dodge`);
+            monster.dodge();
+            break;
+        default:
+            console.log('No valid action was performed');
+    }
+    setupArena(currentPNJ, indexPNJ);
 }
 
 function teamMenu() {
   console.log("oppening team menu...");
+  opponentMove(opponent, currentMonster);
 }

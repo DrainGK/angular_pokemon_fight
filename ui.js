@@ -7,7 +7,7 @@ const shopButton = document.querySelector(".shop-button");
 const questButton = document.querySelector(".quest-button");
 
 const modal = document.querySelector(".modal");
-const screen = document.getElementById("screen")
+const screen = document.getElementById("screen");
 const formTitle = document.querySelector(".form-title");
 let currentMonsterId = null;
 let isSelected = false;
