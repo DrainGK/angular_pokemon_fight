@@ -133,11 +133,15 @@ function updateMonster() {
   currentMonster.levelStats = { ...initialStats };
   displayTeam();
   setupArena(currentPNJ, indexPNJ);
+  document.getElementById("formMode").value = "create";
+  document.querySelector(".input-sprite-container").style.display = "flex";
+
+  console.log("mode switched to create");
 }
 
 function switchToUpdateMode(monster) {
   document.getElementById("formMode").value = "update";
-  console.log("mode switched");
+  console.log("mode switched to update");
   document.getElementById("monsterHp").value = monster.life;
   document.getElementById("monsterAttack").value = monster.attack;
   document.getElementById("monsterDefense").value = monster.defense;
@@ -188,8 +192,8 @@ function levelUp(){
     currentMonster.current = 3;
   }
   remainingPoints = currentMonster.points;
-  switchToUpdateMode(currentMonster);
   updatePointsDisplay();
+  switchToUpdateMode(currentMonster);
   console.log(currentMonster);
   console.log(team);
 } 

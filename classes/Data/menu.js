@@ -58,5 +58,48 @@ const monsterDex = {
     },
     snakeMonster: {
         1: { front: "snake-front", back: "snake-back" }
-    }
+    },
+    fairyMonster: {
+        1: { front: "fairy-front", back: "fairy-back" },
+        2: { front: "mage-front", back: "bigfairy-back" }
+    },
+    pomMonster: {
+        1: { front: "pom-front", back: "pom-back" },
+        2: { front: "pomking-front", back: "pomking-back" }
+    },
+    gossMonster: {
+        1: { front: "goss-front", back: "goss-back" },
+        2: { front: "mage-front", back: "mage-back" }
+    },
+    pigMonster: {
+        1: { front: "pig-front", back: "pig-back" },
+        2: { front: "boar-front", back: "boar-back" }
+    },
+    bookMonster: {
+        1: { front: "book-front", back: "book-back" },
+        2: { front: "deathnote-front", back: "deathnote-back" }
+    },
+    dragonMonster: {
+        1: { front: "dragon-front", back: "dragon-back" }
+    },
+    pythonMonster: {
+        1: { front: "python-front", back: "python-back" }
+    },
+    kayouMonster: {
+        1: { front: "kayou-front", back: "kayou-back" },
+        2: { front: "grokayou-front", back: "grokayou-back" },
+        3: { front: "drakayou-front", back: "drakayou-back" }
+    },
+    tanukiMonster: {
+        1: { front: "tanuki-front", back: "tanuki-back" }
+    },
+    snailMonster: {
+        1: { front: "snail-front", back: "snail-back" },
+        2: { front: "shell-front", back: "shell-back" },
+        3: { front: "pearl-front", back: "pearl-back" }
+    },
+    ghostMonster: {
+        1: { front: "ghost-front", back: "ghost-back" },
+        2: { front: "gast-front", back: "gast-back" }
+    },
 };

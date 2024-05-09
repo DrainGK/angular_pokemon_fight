@@ -73,7 +73,9 @@ function attachEventListeners() {
             resetFormAndStats();
             currentMonsterId = event.target.getAttribute('data-monster');
             currentMonster = team[currentMonsterId]; // assuming team is defined
-            //   if(!isSelected) this.classList.toggle("selected");
+              if(!isSelected){
+                // event.target.classList.toggle("selected");
+              } 
             if (!currentMonster) {
                 modal.style.display = "flex";
             }

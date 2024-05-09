@@ -15,11 +15,12 @@ class Monster {
     this.maxHp = this.life;
     this.currentHp = this.life;
     this.isDodge = false;
+    this.lock = true;
   }
 
   fight(opponent) {
     if (!this.rest){
-
+      
       if (Math.random() < 0.05 - this.luck * 0.005) {
         console.log(`${this.name}'s attack missed`);
         return 0;
@@ -33,6 +34,7 @@ class Monster {
       }
   
           console.log(`Damage dealt by ${this.name} to ${opponent.name}: ${damage}`);
+          if(damage === 0) damage = 0.5;
           opponent.currentHp -= damage;  // Reduce opponent's life
           console.log(`Remaining life of ${opponent.name}: ${opponent.currentHp}`);
           return damage;  // Returning damage for information, not necessary for functionality
@@ -77,7 +79,10 @@ class Monster {
 
   die() {
     if (this.currentHp <= 0) {
-      alert("The monster is K.O");
+      console.log(`${this.name} is KO`);
+      currentMonsterId++;
+      currentMonster = team[currentMonsterId];
+      console.log(currentMonster);
     }
   }
 }
