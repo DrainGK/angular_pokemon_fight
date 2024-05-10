@@ -43,6 +43,10 @@ populateSelect();
 start.addEventListener("click", function () {
   menu.style.display = "none";
   nav.style.display = "flex";
+  const polygon = document.querySelector("#polygon");
+  polygon.style.display = "none";
+  const button = document.querySelector(".button-container");
+  button.style.display = "none";
 });
 
 monsterButton.addEventListener("click", function () {

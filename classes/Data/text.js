@@ -13,7 +13,7 @@ const text = {
 function displayMessagesSequentially(messages, index = 0) {
     if (index < messages.length) {
         const messageObject = messages[index];
-        updateArena(messageObject.text); // Update the message display
+        setupArena(currentPNJ, messageObject.text, indexPNJ); // Update the message display
         setTimeout(() => {
             displayMessagesSequentially(messages, index + 1); // Recurse with next message
         }, messageObject.delay);

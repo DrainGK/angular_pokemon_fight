@@ -157,18 +157,19 @@ function clearElementContents(element) {
 
 function allKO() {
     const goldUI = document.querySelector(".gold")
+    console.log(currentPNJ.name);
     const messages = [
-        { text: `${text.defeat} ${currentPNJ.name}!`, delay: 0 },
-        { text: `${text.gold} ${gold} gold.`, delay: 3000 } 
+        { text: `${text.defeat} ${currentPNJ.name}!`, delay: 3000 },
+        { text: `${text.gold} ${gold} gold.`, delay: 5000 } ,
     ]
     if (currentPNJ && currentPNJ.team.every(monster => monster.currentHp <= 0)) {
         console.log("All monsters KO: true, updating screen with new menu...");
-        displayMessagesSequentially(messages);
         clearElementContents(screen); // Clearing the content explicitly
         screen.innerHTML = menuCat.fight;
         gold += currentPNJ.reward;
         goldUI.innerText = `gold: ${gold}`;
         setupArena(currentPNJ, messages[0].text, indexPNJ);
+        displayMessagesSequentially(messages);
     }
 }
 

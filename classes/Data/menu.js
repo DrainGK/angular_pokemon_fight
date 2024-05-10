@@ -2,10 +2,10 @@ const menuCat = {
     team:
         `
         <div class="create-monster-container">
-            <div class="icon-container plus" data-monster="0">+</div>
-            <div class="icon-container plus" data-monster="1">+</div>
-            <div class="icon-container plus" data-monster="2">+</div>
-            <div class="icon-container plus" data-monster="3">+</div>
+            <div class="plus" data-monster="0">+</div>
+            <div class="plus" data-monster="1">+</div>
+            <div class="plus" data-monster="2">+</div>
+            <div class="plus" data-monster="3">+</div>
         </div>
         `,
     fight:

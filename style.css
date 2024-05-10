@@ -12,20 +12,34 @@ body{
     height: 100vh;
     position: relative;
 
-    background-color: #D59DC5;
+    background-color: white;
+    background-image: url(./img/diag.svg);
+    background-size: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    animation: pan 360s linear infinite;
 
     overflow: hidden;
 }
 
+
+
+@keyframes pan {
+    from {
+        background-position: 0% 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
 .gold{
     position: absolute;
-    color: #EADADA;
+    color: #00262e;
     font-size: large;
-    text-shadow: 0px 0px 15px #4D3A4D;
+    text-shadow: 0px 0px 15px #00262e;
     padding: 1rem;
 
     top: 0;
@@ -33,35 +47,136 @@ body{
 }
 
 .menu{
-    border: 3px solid #EADADA;
-    border-radius: 10px;
-    padding: 3rem;
-
-    background-color: #BF5CAA;
+    position: relative;
+    height: 100%;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem 0;
+}
 
-    box-shadow: 0px 0px 15px #4D3A4D;
+#polygon{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    
+    width: 100%;
+    height: 30%;
+    
+    clip-path: polygon(
+        0% 5%, 1.25% 0%, 2.5% 5%, 
+        3.75% 0%, 5% 5%, 6.25% 0%, 
+        7.5% 5%, 8.75% 0%, 10% 5%, 
+        11.25% 0%, 12.5% 5%, 13.75% 0%, 
+        15% 5%, 16.25% 0%, 17.5% 5%, 
+        18.75% 0%, 20% 5%, 21.25% 0%, 
+        22.5% 5%, 23.75% 0%, 25% 5%, 
+        26.25% 0%, 27.5% 5%, 28.75% 0%, 
+        30% 5%, 31.25% 0%, 32.5% 5%, 
+        33.75% 0%, 35% 5%, 36.25% 0%, 
+        37.5% 5%, 38.75% 0%, 40% 5%, 
+        41.25% 0%, 42.5% 5%, 43.75% 0%, 
+        45% 5%, 46.25% 0%, 47.5% 5%, 
+        48.75% 0%, 50% 5%, 51.25% 0%, 
+        52.5% 5%, 53.75% 0%, 55% 5%, 
+        56.25% 0%, 57.5% 5%, 58.75% 0%, 
+        60% 5%, 61.25% 0%, 62.5% 5%, 
+        63.75% 0%, 65% 5%, 66.25% 0%, 
+        67.5% 5%, 68.75% 0%, 70% 5%, 
+        71.25% 0%, 72.5% 5%, 73.75% 0%, 
+        75% 5%, 76.25% 0%, 77.5% 5%, 
+        78.75% 0%, 80% 5%, 81.25% 0%, 
+        82.5% 5%, 83.75% 0%, 85% 5%, 
+        86.25% 0%, 87.5% 5%, 88.75% 0%, 
+        90% 5%, 91.25% 0%, 92.5% 5%, 
+        93.75% 0%, 95% 5%, 96.25% 0%, 
+        97.5% 5%, 98.75% 0%, 100% 5%, 
+        100% 100%, 0% 100%
+      );
+}
+
+.polygon-background{
+    height: 100%;
+    width: 100%;
+
+    background-color: white;
+    background-image: url(./img/diag.svg);
+    background-size: 10px;
+    animation: pan 360s linear infinite;
+    box-shadow: inset 0rem 0.5rem 2rem 0.25rem rgb(0 0 0 / 40%);
+}
+
+.background{
+    position: absolute;
+    width: 100vw;
+    height: 75vh;
+
+    background: radial-gradient(#ffc100, #ff9600);
+    box-shadow: 0px 0px 50px #4D3A4D;
+
+    z-index: -10;
+}
+
+#sparkle{
+    position: relative;
+
+    height: 100%;
+    width: 100%;
+    background-image: url(./img/hideout.svg);
+    background-size: 5%;
+    animation: pan 180s linear infinite;
+
+    z-index: -8;
+}
+
+#panel{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    background: radial-gradient(transparent, #ff9600);
+    z-index: -6;
+}
+
+.game-title{
+    width: 50vw;
+    min-width: 370px;
+    margin-top: 5vh;
+}
+
+.button-container{
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+    height: 30%;
+
+    display: flex;
+    align-items: center;
+   justify-content: space-evenly;
 }
 
 .button{
-    padding: 1rem;
-    border-radius: 10px;
-    border: none;
-    width: 127px;
-
-    font-weight: 700;
-    font-style: normal;
-    color: #EADADA;
-    background-color: #4D3A4D;
+    width: 16rem;
+    padding: 0.85rem;
+    position: relative;
+    font-size: 1.25rem;
+    color: white;
+    background-color: #00262e;
+    border: 0.2rem solid white;
+    border-radius: 0.75rem;
+    outline: 0.2rem solid #00262e;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px #4D3A4D;
 }
 
 .button:hover{
-    color: #4D3A4D;
-    background-color: #EADADA;
+    background-color: #ff9600;
+    outline: 0.2rem solid #ff9600;
+    background-image: url(./img/hideout.svg);
+    background-size: 20%;
+    animation: pan 10s linear infinite;
     transition: ease-in-out 0.1s;
 }
 
@@ -113,18 +228,40 @@ body{
 .create-monster-container{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: fit-content;
     height: 30vw;
 
-    gap: 0 3rem;
+    gap: 5rem 3rem;
 
 }
 
 .plus{
-    background-color: #4D3A4D;
-    box-shadow: 0px 0px 15px #4D3A4D;
+    width: 370px;
+    height: 75px;
+
+    background-color: #68d2e8;
+    color: white;
+    box-shadow: 0px 0px 15px #4d3a4d2d;
+
+    border-radius: 0px 50px 50px 0;
+    outline: 0.2rem solid #68d2e8;
+    border: 0.2rem solid white;
+
+    background-image: url(./img/hideout-blue.svg);
+    background-size: 20%;
+    animation: pan 30s linear infinite;
+    transition: box-shadow 0.3s ease-in-out; 
+
+    font-size: 2rem;
+    text-align: center;
+}
+
+.plus:hover{
+    cursor: pointer;
+    box-shadow: 0 0 20px 10px #68d2e8;
 }
 
 h1{
@@ -259,12 +396,15 @@ h1{
 
 }
 
-.pokemon-resume{
-    border-radius: 10px;
-    width: 100px;
-    padding: 3rem;
+.pokemon-resume:first-child{
+    position: relative;
 
-    border: 4px solid #EADADA;
+    border-radius: 10px;
+    width: 40%;
+    padding: 2.5rem;
+
+    border: 0.2rem solid white;
+    border-radius: 0px 50px 0px 50px;
 
     display: flex;
     flex-direction: column;
@@ -278,13 +418,33 @@ h1{
     color: #4D3A4D;
 }
 
-.pokemon-resume > img{
-    width: 80px;
-    height: 80px;
+.pokemon-resume > span{
+    position: absolute;
+    right: 0;
+    bottom: -20%;
+    color: #03b0d23f;
+    font-size: 10rem;
+    font-weight: bold;
+
 }
 
-.pokemon-resume > *{
-    width: 150px;
+.pokemon-resume > img{
+    position: absolute;
+    top: -20%;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    animation: resume-sprite-animation 0.5s linear infinite;
+}
+
+@keyframes resume-sprite-animation {
+    0% {
+        transform: translateY(0%);
+    } 50%{
+        transform: translateY(-5%);
+    } 100%{
+        transform: translateY(0%);
+    } 
 }
 
 .pokemon-resume > h2{
@@ -292,33 +452,12 @@ h1{
 }
 
 .resume {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    font-size: 0.8rem;
-}
-
-.resume > *{
-    border: 2px solid #EADADA;
-    padding: 2px;
-    
-}
-
-.resume > p:nth-child(1){
-    border-bottom: 0px;
-    border-right: 0px;
-    border-radius: 5px 0 0 0;
-}
-.resume > p:nth-child(2){
-    border-bottom: 0px;
-    border-radius: 0 5px 0 0;
-
-}
-.resume > p:nth-child(3){
-    border-right: 0px;
-    border-radius: 0 0 0 5px;
-}
-.resume > p:nth-child(4){
-    border-radius: 0 0 5px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    width: 80%;
 }
 
 .category-container{

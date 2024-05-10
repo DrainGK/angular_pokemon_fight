@@ -159,9 +159,12 @@ function displayTeam(){
     const index = button.getAttribute('data-monster');
     if(team[index] != null || team[index] != undefined){
       let id = team[index].current
+      let teamPosition = parseInt(index) + 1;
       button.classList.add("pokemon-resume")
       button.innerHTML = `
-      <h2>${team[index].name} level ${team[index].level}</h2>
+
+      <span>${teamPosition}</span>
+      <h2>${team[index].name} Lv${team[index].level}</h2>
         <img src="./img/monsters/${team[index].pic[id]?.front ??team[index].pic[1].front}.png" height="80" width="80"/> 
         <div class="resume">
           <p>Hp ${team[index].life}</p>

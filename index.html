@@ -8,15 +8,29 @@
 </head>
 <body>
 
-    <p class="gold">gold: 0</p>
-    
+    <p class="gold" style="display: none;">gold: 0</p>
+    <span id="polygon">
+        <div class="polygon-background"></div>
+    </span>
+    <audio controls autoplay loop style="position: absolute; z-index: 10; top: 2%;">
+        <source src="./music/fight_music_2.mp3">
+    </audio>
     <section class="menu">
-        <h1 class="title">Fight MonsterZ</h1>
-        <div class="button-container">
-            <button class="button start-game">START GAME</button>
-            <button class="button">ABOUT</button>
+        <div class="background">
+            <div id="sparkle">
+                <div id="panel"></div>
+            </div>
         </div>
+        <img class="game-title" src="./img/Title.png" alt="mythic masters title">
     </section>
+    <div class="button-container">
+        <button class="button start-game">
+            START GAME
+        </button>
+        <button class="button about">
+            ABOUT
+        </button>
+    </div>
 
     <section class="nav">
         <span class="icon-container monster-button">
