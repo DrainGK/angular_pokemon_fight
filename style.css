@@ -241,6 +241,9 @@ body{
 .plus{
     width: 370px;
     height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background-color: #68d2e8;
     color: white;
@@ -256,7 +259,10 @@ body{
     transition: box-shadow 0.3s ease-in-out; 
 
     font-size: 2rem;
-    text-align: center;
+}
+
+.plus > img{
+    height: 2rem;
 }
 
 .plus:hover{
@@ -309,19 +315,28 @@ h1{
     align-items: center;
 }
 
+audio{
+    display: none;
+}
+
 .modal{
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    width: 350px;
+    width: 50%;
     padding: 1rem;
 
 
-    background-color: #4D3A4D;
+    background-color: #00262e;
+    background-image: url(/img/hideout-blue.svg);
+    background-size: 10%;
+    animation: pan 60s linear infinite;
+
     border: 2px solid #EADADA;
-    border-radius: 15px;
+    outline: 4px solid #00262e;
+    border-radius: 50px 0 50px 0;
     color: #EADADA;
     box-shadow: 0px 0px 15px #4D3A4D;
 
@@ -405,12 +420,17 @@ h1{
 
     border: 0.2rem solid white;
     border-radius: 0px 50px 0px 50px;
+    outline-color: #ffc100;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem 0;
+    background-image: url(./img/wave-yellow.svg);
+    background-color: #ffc100;
+    background-size: 20%;
+    animation: pan 30s linear infinite;
 }
 
 .selected{
@@ -418,19 +438,53 @@ h1{
     color: #4D3A4D;
 }
 
-.pokemon-resume > span{
+.pokemon-resume{
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem 0;
+    background-image: url(./img/wave.svg);
+    background-size: 20%;
+    animation: pan 30s linear infinite;
+}
+
+.pokemon-resume:first-child:hover{
+    box-shadow: 0 0 20px 10px #ffc100;
+}
+
+.pokemon-resume:first-child > span{
     position: absolute;
     right: 0;
     bottom: -20%;
-    color: #03b0d23f;
+    color: rgba(255, 255, 255, 0.259);
     font-size: 10rem;
     font-weight: bold;
 
 }
+.pokemon-resume > span{
+    position: absolute;
+    right: 5%;
+    bottom: -10%;
+    color: #03b0d23f;
+    font-size: 5rem;
+    font-weight: bold;
 
-.pokemon-resume > img{
+}
+
+.pokemon-resume:first-child > img{
     position: absolute;
     top: -20%;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    animation: resume-sprite-animation 0.5s linear infinite;
+}
+.pokemon-resume > img{
+    position: absolute;
+    top: -50%;
     left: -50px;
     width: 100px;
     height: 100px;
