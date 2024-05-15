@@ -7,14 +7,16 @@ const shopButton = document.querySelector(".shop-button");
 const questButton = document.querySelector(".quest-button");
 
 const modal = document.querySelector(".modal");
+const overlay = document.getElementById("overlay");
 const screen = document.getElementById("screen");
 const formTitle = document.querySelector(".form-title");
+const menuTest = document.querySelector(".menu-test");
 let currentMonsterId = null;
 let isSelected = false;
 let remainingPoints = 0;
 
 const team = [];
-let currentMonster = null;
+let currentMonster = team[0];
 
 function populateSelect() {
     const select = document.getElementById('monsterSprite');
@@ -40,6 +42,15 @@ document.getElementById('monsterSprite').addEventListener('change', showSelected
 
 populateSelect();
 
+menuTest.addEventListener("click", function(){
+  this.classList.toggle('open-menu');
+  const items = this.querySelectorAll('.menu-container-test p');
+  items.forEach((item, index) => {
+      // Delay the animation of each item
+      item.style.animationDelay = `${index * 0.1}s`;
+  });
+})
+
 start.addEventListener("click", function () {
   menu.style.display = "none";
   nav.style.display = "flex";
@@ -56,6 +67,11 @@ monsterButton.addEventListener("click", function () {
 
 });
 
+overlay.addEventListener("click", function(){
+  modal.style.display = "none";
+  overlay.style.display = "none";
+})
+
 fightButton.addEventListener("click", function () {
   screen.innerHTML = menuCat.fight;
   setupChallengers();
@@ -69,23 +85,37 @@ questButton.addEventListener("click", function () {
 });
 
 function attachEventListeners() {
-    screen.addEventListener('click', function(event) {
-        // Check if the clicked element is a .plus button
-        if (event.target.classList.contains('plus')) {
-            console.log("Clicked a plus button");
-            formTitle.innerText = "Create your monster";
-            resetFormAndStats();
-            currentMonsterId = event.target.getAttribute('data-monster');
-            currentMonster = team[currentMonsterId]; // assuming team is defined
-              if(!isSelected){
-                // event.target.classList.toggle("selected");
-              } 
-            if (!currentMonster) {
-                modal.style.display = "flex";
-            }
-            console.log(currentMonster);
-        }
-    });
+  screen.addEventListener('click', function(event) {
+      let target = event.target;
+
+      if (target.classList.contains('plus')) {
+          let monsterId = target.getAttribute('data-monster');
+          let monster = team[monsterId];
+
+          if (monster) {
+              // Only swap if the monster is not already the first one
+              if (monsterId !== '0') {
+                  swapMonster(team, monsterId);
+                  displayTeam(); // Update UI to reflect changes
+              }
+          } else {
+              // If there is no monster, show creation modal
+              modal.style.display = "flex";
+              overlay.style.display = "block";
+              formTitle.innerText = "Create your monster";
+              resetFormAndStats();
+          }
+      }
+  });
+}
+
+function swapMonster(team, currentMonsterId){
+  let currentMonsterIndex = parseInt(currentMonsterId);
+  if (currentMonsterIndex !== 0){
+    let temp = team[currentMonsterIndex];
+    team[currentMonsterId] = team[0];
+    team[0] = temp;
+  }
 }
 
 

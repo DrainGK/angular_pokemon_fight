@@ -1,9 +1,10 @@
 const challengers = {
-  villagers: {
+  Villagers: {
     1: {
       name: "Gamin",
       pic: "gamin.png",
       reward: 100,
+      lock: false,
       team: [
         new Monster(
           "Bug monster",
@@ -51,6 +52,7 @@ const challengers = {
       name: "Hage",
       pic: "hage.png",
       reward: 250,
+      lock: true,
       team: [
         new Monster(
           "Cat monster",
@@ -98,6 +100,7 @@ const challengers = {
       name: "Jakson",
       pic: "jakson.png",
       reward: 500,
+      lock: true,
       team: [
         new Monster(
           "Do monster",
@@ -145,6 +148,7 @@ const challengers = {
       name: "Angry",
       pic: "angry.png",
       reward: 1000,
+      lock: true,
       team: [
         new Monster(
           "Bug monster",
@@ -178,10 +182,10 @@ const challengers = {
         ),
         new Monster(
           "Dofin Monster (full power)",
-          20,
-          20,
-          20,
-          20,
+          15,
+          15,
+          15,
+          15,
           0,
           monsterDex.doMonster[2].front,
           4
@@ -194,6 +198,7 @@ const challengers = {
       name: "Sorcerer",
       pic: "sorcerer.png",
       reward: 100,
+      lock: true,
       team: [
         new Monster(
           "Mage monster",
@@ -241,6 +246,7 @@ const challengers = {
       name: "Jiji",
       pic: "jiji.png",
       reward: 250,
+      lock: true,
       team: [
         new Monster(
           "Cat monster",
@@ -288,6 +294,7 @@ const challengers = {
       name: "Monk",
       pic: "monk.png",
       reward: 500,
+      lock: true,
       team: [
         new Monster(
           "Do monster",
@@ -335,6 +342,7 @@ const challengers = {
       name: "Gros",
       pic: "gros.png",
       reward: 1000,
+      lock: true,
       team: [
         new Monster(
           "Bug monster",
@@ -384,6 +392,7 @@ const challengers = {
       name: "Green Ninja",
       pic: "green.png",
       reward: 100,
+      lock: true,
       team: [
         new Monster(
           "Mage monster",
@@ -431,6 +440,7 @@ const challengers = {
       name: "Black Ninja",
       pic: "ninja.png",
       reward: 250,
+      lock: true,
       team: [
         new Monster(
           "Cat monster",
@@ -478,6 +488,7 @@ const challengers = {
       name: "Red Ninja",
       pic: "red.png",
       reward: 500,
+      lock: true,
       team: [
         new Monster(
           "Do monster",
@@ -525,6 +536,7 @@ const challengers = {
       name: "Aniki",
       pic: "Aniki.png",
       reward: 1000,
+      lock: true,
       team: [
         new Monster(
           "Bug monster",
@@ -574,6 +586,7 @@ const challengers = {
       name: "Sam",
       pic: "sam.png",
       reward: 100,
+      lock: true,
       team: [
         new Monster(
           "Mage monster",
@@ -621,6 +634,7 @@ const challengers = {
       name: "Eye",
       pic: "eye.png",
       reward: 250,
+      lock: true,
       team: [
         new Monster(
           "Cat monster",
@@ -668,6 +682,7 @@ const challengers = {
       name: "Blue",
       pic: "blue.png",
       reward: 500,
+      lock: true,
       team: [
         new Monster(
           "Do monster",
@@ -715,6 +730,7 @@ const challengers = {
       name: "Masked Samourai",
       pic: "masked.png",
       reward: 1000,
+      lock: true,
       team: [
         new Monster(
           "Bug monster",
@@ -759,11 +775,12 @@ const challengers = {
       ],
     },
   },
-  lions: {
+  Lions: {
     1: {
       name: "Rion",
       pic: "Rion.png",
       reward: 100,
+      lock: true,
       team: [
         new Monster(
           "Mage monster",
@@ -811,6 +828,7 @@ const challengers = {
       name: "Simba",
       pic: "simba.png",
       reward: 250,
+      lock: true,
       team: [
         new Monster(
           "Cat monster",
@@ -858,6 +876,7 @@ const challengers = {
       name: "Lion",
       pic: "scar.png",
       reward: 500,
+      lock: true,
       team: [
         new Monster(
           "Do monster",
@@ -905,6 +924,7 @@ const challengers = {
       name: "Scar",
       pic: "Lion.png",
       reward: 1000,
+      lock: true,
       team: [
         new Monster(
           "Bug monster",
@@ -950,3 +970,8 @@ const challengers = {
     },
   },
 };
+
+const challengersBg = {
+  Villagers: "/img/background/village.webp",
+  Temple: "/img/background/temple.webp",
+}

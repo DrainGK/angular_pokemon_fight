@@ -15,6 +15,7 @@ function initializeForm() {
       updateMonster();
     }
     modal.style.display = "none";
+    overlay.style.display = "none";
   });
 
   inputs.forEach((input) => {
@@ -165,6 +166,14 @@ function displayTeam(){
 
       <span>${teamPosition}</span>
       <h2>${team[index].name} Lv${team[index].level}</h2>
+      <div class="health-bar">
+        <span class="health"
+          style="width: calc((${team[index].currentHp} / ${team[index].maxHp}) * 100%);
+          background-color: ${getHealthColor(team[index].currentHp, team[index].maxHp)};
+                            "
+          >
+        </span>
+        </div>
         <img src="./img/monsters/${team[index].pic[id]?.front ??team[index].pic[1].front}.png" height="80" width="80"/> 
         <div class="resume">
           <p>Hp ${team[index].life}</p>
@@ -180,14 +189,12 @@ function displayTeam(){
 window.onload = initializeForm;
 initializeStats();
 
-levelUpButton.addEventListener("click", function () {
-  levelUp()
-});
-
 function levelUp(){
   formTitle.innerText = "Upgrade your monster"
   console.log("level up");
   modal.style.display = "flex";
+  overlay.style.display = "block";
+
   currentMonster.levelUp();
   if(currentMonster.level === 4 && currentMonster.pic[2]){
     currentMonster.current = 2;
