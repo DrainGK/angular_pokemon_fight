@@ -456,8 +456,8 @@ audio{
 .pokemon-resume > .health-bar{
     position: absolute;
     width: 65%;
-    bottom: 15%;
-    height: 5px;
+    bottom: 45%;
+    height: 4px;
 }
 
 .pokemon-resume:first-child{
@@ -867,39 +867,46 @@ audio{
 /*-----------------test----------------*/
 
 .menu-test {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 20;
+    z-index: 15;
     margin: 1rem;
     background-color: white;
     color: #00262e;
     height: 75px;
     width: 75px;
     border-radius: 50%;
-    cursor: pointer;
     box-shadow: 0px 0px 10px #00262e;
     transition: all 0.5s ease; /* smooth transition for shape change */
     overflow: hidden;
 }
 
 .icon-test {
-    width: 80%;
-    height: 80%;
-    display: flex;
+    position: absolute;
+    top: 2%;
+    left: 0%;
+    z-index: 20;
+    margin: 1rem;
+    width: 75px;
+    height: 40px;
+    display: none;
     flex-direction: column;
     justify-content: space-around;
+    cursor: pointer;
 }
 
 .line-1, .line-2, .line-3 {
-    height: 2px;
+    height: 4px;
     width: 60%;
+    border-radius: 30px;
     background-color: #00262e;
     margin: 0 auto;
+    transition: transform 0.3s, opacity 0.3s;
 }
 
 .menu-container-test {
@@ -907,19 +914,30 @@ audio{
     background: white;
     opacity: 0;
     transition: opacity 0.5s ease;
+    font-size: 2rem;
 }
 
 .menu-container-test p {
     transition: transform 0.3s ease, opacity 0.3s ease;
+    text-transform: uppercase;
     transform: translateY(-20px);
     opacity: 0;
 }
 
-.menu-test.open-menu {
+.menu-container-test p:hover {
+    color: #ff9600;
+    cursor: pointer;
+}
+
+.menu-test.expand {
     border-radius: 15px;
     width: 150px;
     height: 150px;
     animation: expandMenu 0.5s forwards;
+}
+
+.menu-test.collapse {
+    animation: collapseMenu 0.5s forwards;
 }
 
 @keyframes expandMenu {
@@ -936,12 +954,30 @@ audio{
     }
     50% {
         border-radius: 15px;
-        width: 15vw;
+        width: 300px;
         height: 75px;
     }
     100% {
-        width: 15vw;
-        height: 60vh;
+        width: 300px;
+        height: 450px;
+    }
+}
+
+@keyframes collapseMenu {
+    0% {
+        width: 300px;
+        height: 450px;
+        border-radius: 15px;
+    }
+    50% {
+        border-radius: 15px;
+        width: 300px;
+        height: 75px;
+    }
+    100% {
+        border-radius: 50%;
+        width: 75px;
+        height: 75px;
     }
 }
 
@@ -965,4 +1001,14 @@ audio{
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+.icon-open{
+    transform: rotate(45deg) translate(4px, 4px);
+}
+.icon-open2{
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+.icon-open3{
+    opacity: 0;
 }

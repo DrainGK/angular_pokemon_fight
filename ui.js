@@ -1,6 +1,5 @@
 const start = document.querySelector(".start-game");
 const menu = document.querySelector(".menu");
-const nav = document.querySelector(".nav");
 const monsterButton = document.querySelector(".monster-button");
 const fightButton = document.querySelector(".fight-button");
 const shopButton = document.querySelector(".shop-button");
@@ -10,7 +9,11 @@ const modal = document.querySelector(".modal");
 const overlay = document.getElementById("overlay");
 const screen = document.getElementById("screen");
 const formTitle = document.querySelector(".form-title");
-const menuTest = document.querySelector(".menu-test");
+const nav = document.querySelector(".menu-test");
+const iconTest = document.querySelector(".icon-test");
+const line1 = document.querySelector(".line-1");
+const line2 = document.querySelector(".line-2");
+const line3 = document.querySelector(".line-3");
 let currentMonsterId = null;
 let isSelected = false;
 let remainingPoints = 0;
@@ -42,18 +45,32 @@ document.getElementById('monsterSprite').addEventListener('change', showSelected
 
 populateSelect();
 
-menuTest.addEventListener("click", function(){
-  this.classList.toggle('open-menu');
-  const items = this.querySelectorAll('.menu-container-test p');
+iconTest.addEventListener("click", function(){
+  nav.classList.toggle('open-menu');
+  const items = nav.querySelectorAll('.menu-container-test p');
+  line1.classList.toggle('icon-open');
+  line2.classList.toggle('icon-open2');
+  line3.classList.toggle('icon-open3');
+
+
   items.forEach((item, index) => {
       // Delay the animation of each item
-      item.style.animationDelay = `${index * 0.1}s`;
+      item.style.animationDelay = `${index * 0.4}s`;
   });
+
+  if (nav.classList.contains('expand')) {
+    nav.classList.remove('expand');
+    nav.classList.add('collapse');
+} else {
+    nav.classList.remove('collapse');
+    nav.classList.add('expand');
+}
 })
 
 start.addEventListener("click", function () {
   menu.style.display = "none";
   nav.style.display = "flex";
+  iconTest.style.display = "flex";
   const polygon = document.querySelector("#polygon");
   polygon.style.display = "none";
   const button = document.querySelector(".button-container");
