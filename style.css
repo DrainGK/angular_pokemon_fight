@@ -626,7 +626,7 @@ audio{
 
 .icons-container{
     width: 90%;
-
+    
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -666,16 +666,31 @@ audio{
 
 
 .icon-pnj{
-    border: 6px solid #68d2e8;
+    border: 6px solid #a8f0ff;
     border-radius: 50%;
     box-shadow: 0px 0px 15px #4D3A4D;
-
+    
+    
     transition: 1s ease-in-out;
+}
+
+.icon-container > svg{
+    display: none;
 }
 
 .icon-pnj:hover{
     transition: 0.2s ease-in-out;
     animation: glow-blue 2s ease-in-out infinite;
+    
+}
+
+.pnj-lock{
+    filter: grayscale(100%);
+}
+
+.icon-container svg.won {
+    display: block;
+    height: 80%;width: 80%;
 }
 
 .arena{

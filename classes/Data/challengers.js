@@ -5,6 +5,7 @@ const challengers = {
       pic: "gamin.png",
       reward: 100,
       lock: false,
+      win: false,
       team: [
         new Monster(
           "Bug monster",
@@ -53,6 +54,7 @@ const challengers = {
       pic: "hage.png",
       reward: 250,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Cat monster",
@@ -101,6 +103,7 @@ const challengers = {
       pic: "jakson.png",
       reward: 500,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Do monster",
@@ -149,6 +152,7 @@ const challengers = {
       pic: "angry.png",
       reward: 1000,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Bug monster",
@@ -199,6 +203,7 @@ const challengers = {
       pic: "sorcerer.png",
       reward: 100,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Mage monster",
@@ -247,6 +252,7 @@ const challengers = {
       pic: "jiji.png",
       reward: 250,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Cat monster",
@@ -295,6 +301,7 @@ const challengers = {
       pic: "monk.png",
       reward: 500,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Do monster",
@@ -343,6 +350,7 @@ const challengers = {
       pic: "gros.png",
       reward: 1000,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Bug monster",
@@ -393,6 +401,7 @@ const challengers = {
       pic: "green.png",
       reward: 100,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Mage monster",
@@ -441,6 +450,7 @@ const challengers = {
       pic: "ninja.png",
       reward: 250,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Cat monster",
@@ -489,6 +499,7 @@ const challengers = {
       pic: "red.png",
       reward: 500,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Do monster",
@@ -537,6 +548,7 @@ const challengers = {
       pic: "Aniki.png",
       reward: 1000,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Bug monster",
@@ -587,6 +599,7 @@ const challengers = {
       pic: "sam.png",
       reward: 100,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Mage monster",
@@ -635,6 +648,7 @@ const challengers = {
       pic: "eye.png",
       reward: 250,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Cat monster",
@@ -683,6 +697,7 @@ const challengers = {
       pic: "blue.png",
       reward: 500,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Do monster",
@@ -731,6 +746,7 @@ const challengers = {
       pic: "masked.png",
       reward: 1000,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Bug monster",
@@ -781,6 +797,7 @@ const challengers = {
       pic: "Rion.png",
       reward: 100,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Mage monster",
@@ -829,6 +846,7 @@ const challengers = {
       pic: "simba.png",
       reward: 250,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Cat monster",
@@ -877,6 +895,7 @@ const challengers = {
       pic: "scar.png",
       reward: 500,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Do monster",
@@ -925,6 +944,7 @@ const challengers = {
       pic: "Lion.png",
       reward: 1000,
       lock: true,
+      win: false,
       team: [
         new Monster(
           "Bug monster",
