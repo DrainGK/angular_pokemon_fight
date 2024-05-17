@@ -44,7 +44,7 @@ function setupChallengers() {
             `;
 
             // Attach click event listener if all monsters are alive
-            if (checkAllMonstersAlive(pnj) && !pnj.lock) {
+            if (!pnj.lock) {
                 icon.addEventListener("click", () => {
                     indexPNJ = 0;
                     setupArena(pnj);

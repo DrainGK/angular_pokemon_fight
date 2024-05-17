@@ -46,25 +46,7 @@ document.getElementById('monsterSprite').addEventListener('change', showSelected
 populateSelect();
 
 iconTest.addEventListener("click", function(){
-  nav.classList.toggle('open-menu');
-  const items = nav.querySelectorAll('.menu-container-test p');
-  line1.classList.toggle('icon-open');
-  line2.classList.toggle('icon-open2');
-  line3.classList.toggle('icon-open3');
-
-
-  items.forEach((item, index) => {
-      // Delay the animation of each item
-      item.style.animationDelay = `${index * 0.4}s`;
-  });
-
-  if (nav.classList.contains('expand')) {
-    nav.classList.remove('expand');
-    nav.classList.add('collapse');
-} else {
-    nav.classList.remove('collapse');
-    nav.classList.add('expand');
-}
+  toggleMenu()
 })
 
 start.addEventListener("click", function () {
@@ -78,6 +60,8 @@ start.addEventListener("click", function () {
 });
 
 monsterButton.addEventListener("click", function () {
+    toggleMenu();
+    getRole();
     screen.innerHTML = menuCat.team;
     attachEventListeners();
     displayTeam();
@@ -90,15 +74,18 @@ overlay.addEventListener("click", function(){
 })
 
 fightButton.addEventListener("click", function () {
+  toggleMenu();
   screen.innerHTML = menuCat.fight;
   setupChallengers();
 });
 
 shopButton.addEventListener("click", function () {
+  toggleMenu();
   screen.innerHTML = menuCat.shop;
 });
 questButton.addEventListener("click", function () {
   screen.innerHTML = menuCat.quest;
+  toggleMenu();
 });
 
 function attachEventListeners() {
@@ -130,9 +117,32 @@ function swapMonster(team, currentMonsterId){
   let currentMonsterIndex = parseInt(currentMonsterId);
   if (currentMonsterIndex !== 0){
     let temp = team[currentMonsterIndex];
-    team[currentMonsterId] = team[0];
+    team[currentMonsterIndex] = team[0];
     team[0] = temp;
+    currentMonster = team[0];
   }
+}
+
+function toggleMenu(){
+  nav.classList.toggle('open-menu');
+  line1.classList.toggle('icon-open');
+  line2.classList.toggle('icon-open2');
+  line3.classList.toggle('icon-open3');
+
+  const items = nav.querySelectorAll('.menu-container-test p');
+
+  items.forEach((item, index) => {
+      // Delay the animation of each item
+      item.style.animationDelay = `${index * 0.4}s`;
+  });
+
+  if (nav.classList.contains('expand')) {
+    nav.classList.remove('expand');
+    nav.classList.add('collapse');
+} else {
+    nav.classList.remove('collapse');
+    nav.classList.add('expand');
+}
 }
 
 

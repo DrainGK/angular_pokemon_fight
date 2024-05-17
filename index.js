@@ -2,6 +2,7 @@ const createform = document.getElementById("createMonsterForm");
 const levelUpButton = document.getElementById("levelUp");
 const points = document.getElementById("points");
 const inputs = document.querySelectorAll(".number");
+const roleContainer = document.querySelector(".role-container")
 let gold = 0;
 let initialStats = {};
 
@@ -37,7 +38,6 @@ function initializeStats() {
 
 function statsChange(input) {
   console.log(initialStats);
-  // console.log(levelStats);
   const statId = input.id;
   const newValue = parseInt(input.value) || 0;
   const oldValue = initialStats[statId];
@@ -76,6 +76,7 @@ function createMonster() {
   const luck = parseInt(document.getElementById("monsterLuck").value);
   const sprites = JSON.parse(document.getElementById('monsterSprite').value);
   document.querySelector(".input-sprite-container").style.display = "flex";
+  document.querySelector(".role-container").style.display = "flex"
 
   currentMonster = new Monster(
     name,
@@ -113,8 +114,6 @@ function resetFormAndStats() {
 }
 
 function updateMonster() {
-  console.log("updating...");
-
   currentMonster.points = remainingPoints;
   currentMonster.life = parseInt(document.getElementById("monsterHp").value);
   currentMonster.attack = parseInt(
@@ -126,9 +125,7 @@ function updateMonster() {
   currentMonster.luck = parseInt(document.getElementById("monsterLuck").value);
   currentMonster.currentHp = currentMonster.life;
   currentMonster.maxHp = currentMonster.life;
-  console.log(currentMonster.life, currentMonster.currentHp);
 
-  console.log(currentMonster);
   alert(`${currentMonster.name} updated successfully!`);
   document.getElementById("formMode").value = "create";
   currentMonster.levelStats = { ...initialStats };
@@ -136,7 +133,10 @@ function updateMonster() {
   setupArena(currentPNJ, indexPNJ);
   document.getElementById("formMode").value = "create";
   document.querySelector(".input-sprite-container").style.display = "flex";
+  document.querySelector(".role-container").style.display = "flex"
 
+  
+  
   console.log("mode switched to create");
 }
 
@@ -147,11 +147,12 @@ function switchToUpdateMode(monster) {
   document.getElementById("monsterAttack").value = monster.attack;
   document.getElementById("monsterDefense").value = monster.defense;
   document.getElementById("monsterLuck").value = monster.luck;
-
+  
   document.getElementById("monsterName").value = monster.name;
   document.getElementById("monsterName").disabled = true;
-
+  
   document.querySelector(".input-sprite-container").style.display = "none";
+  document.querySelector(".role-container").style.display = "none";
 }
 
 function displayTeam(){
@@ -207,3 +208,45 @@ function levelUp(){
   console.log(currentMonster);
   console.log(team);
 } 
+
+function getRole(){
+  document.addEventListener("click", function(event){
+    let target = event.target;
+
+    if (target.classList.contains('role')){
+        let role = target.getAttribute('data-role');
+        switch (role) {
+          case "Attack":
+            document.getElementById("monsterHp").value = 2;
+            document.getElementById("monsterAttack").value = 5;
+            document.getElementById("monsterDefense").value = 3;
+            document.getElementById("monsterLuck").value = 0;
+          break;
+          case "Defense":
+            document.getElementById("monsterHp").value = 5;
+            document.getElementById("monsterAttack").value = 0;
+            document.getElementById("monsterDefense").value = 5;
+            document.getElementById("monsterLuck").value = 0;
+          break;
+          case "Luck":
+            document.getElementById("monsterHp").value = 4;
+            document.getElementById("monsterAttack").value = 0;
+            document.getElementById("monsterDefense").value = 2;
+            document.getElementById("monsterLuck").value = 4;
+          break;
+          case "Balanced":
+            document.getElementById("monsterHp").value = 2;
+            document.getElementById("monsterAttack").value = 3;
+            document.getElementById("monsterDefense").value = 3;
+            document.getElementById("monsterLuck").value = 2;
+          break;
+        
+          default:
+            break;
+        }
+        remainingPoints = 0;
+        initializeStats();
+        updatePointsDisplay();
+    }
+  })
+}

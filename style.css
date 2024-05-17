@@ -283,16 +283,20 @@ h1{
     outline: none;
     width: 100%;
     border-radius: 5px;
-    border: solid 1px #D59DC5;
+    border: solid 1px white;
     height: 25px;
-    color: #EADADA;
+    color: white;
     background-color: transparent;
     margin-top: 0.5rem;
 }
 
 .input:hover{
     cursor: pointer;
-    border-color: #EADADA;
+    border-color: white;
+}
+
+select:active, select:focus{
+    background-color: #00262e;
 }
 
 .file{
@@ -365,6 +369,43 @@ audio{
     flex-direction: column;
 }
 
+.role-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.role{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20%;
+    background-color: #ff9600;
+    background-image: url(./img/plus-white.svg);
+    background-size: 30%;
+    padding: 0.5rem 0.2rem;
+    margin: 1rem 0;
+
+    color: white;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+
+    border: 2px solid white;
+    outline: 3px solid #ff9600;
+    border-radius: 5px;
+
+    animation: pan 10s linear infinite;
+}
+
+.role:hover{
+    background-color: #68d2e8;
+    outline-color: #68d2e8;
+    cursor: pointer;
+}
+
 .stats-input-container{
     align-items: center;
 }
@@ -377,20 +418,8 @@ audio{
 #arise{
     margin: 0 auto;
     width: 100%;
-    height: 40px;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-    color: #4D3A4D;
-    background-color: #EADADA;
     text-transform:uppercase ;
     font-weight: bold;
-}
-
-#arise:hover{
-    color: #EADADA;
-    background-color: #D59DC5;
-    transform: scale(1.05);
 }
 
 #levelUp {
@@ -409,7 +438,7 @@ audio{
 
     background-color: #EADADA;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px #BF5CAA;
+    box-shadow: 0px 0px 15px white;
 
 }
 
@@ -911,6 +940,7 @@ audio{
 
 .menu-container-test {
     display: none;
+    height: 60%;
     background: white;
     opacity: 0;
     transition: opacity 0.5s ease;
