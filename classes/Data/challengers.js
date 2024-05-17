@@ -974,4 +974,5 @@ const challengers = {
 const challengersBg = {
   Villagers: "/img/background/village.webp",
   Temple: "/img/background/temple.webp",
+  Ninjas: "/img/background/ninjas.webp",
 }

@@ -14,6 +14,10 @@ const iconTest = document.querySelector(".icon-test");
 const line1 = document.querySelector(".line-1");
 const line2 = document.querySelector(".line-2");
 const line3 = document.querySelector(".line-3");
+
+const audio = document.getElementById("audio");
+const audioPara = document.querySelector(".audio-parameter");
+
 let currentMonsterId = null;
 let isSelected = false;
 let remainingPoints = 0;
@@ -144,6 +148,10 @@ function toggleMenu(){
     nav.classList.add('expand');
 }
 }
+
+audioPara.addEventListener("click", function(){
+  audio.classList.toggle("audio-toggle");
+})
 
 
 

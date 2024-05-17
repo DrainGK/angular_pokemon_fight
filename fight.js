@@ -7,8 +7,8 @@ function setupChallengers() {
     const challengersContainer = document.querySelector(".challengers-icon");
     const challengersSelection = document.createElement("div");
     challengersSelection.className = "challengers-container"
-    challengersSelection.innerHTML = "";
-    challengersContainer.innerHTML = "";  // Clear the container to avoid duplicating content
+    challengersSelection.innerHTML??  "";
+    challengersContainer.innerHTML?? "";  // Clear the container to avoid duplicating content
 
     // Loop through each group in the challengers object (e.g., villagers, temple)
     Object.entries(challengers).forEach(([groupName, members]) => {
@@ -96,11 +96,10 @@ function setupGlobalListeners(element) {
 
 function setupArena(pnj, message) {
 
-    const challengersIcon = document.querySelector(".challengers-icon");
     currentPNJ = pnj;
     const monster = pnj.team[indexPNJ];
     const arena = `
-            <div class="arena"> 
+            <div class="arena" style= "background-image:url(${challengersBg[currentGroup] ?? "/img/background/village.webp"})"> 
                 <div>
                     <div class="img-container">
                         <img class="sprite-fight" src="./img/monsters/${
@@ -150,7 +149,7 @@ function setupArena(pnj, message) {
             Regarding to chat gpt I should use Event Delegation to avoid any issues
         */
 
-    challengersIcon.innerHTML = arena + fightMenu;
+        document.querySelector(".challengers-icon").innerHTML = arena + fightMenu;
 
     updateArena(message)
 }
@@ -192,6 +191,7 @@ function clearElementContents(element) {
 }
 
 function allKO() {
+    const challengersIcon = document.querySelector(".challengers-icon");
     const goldUI = document.querySelector(".gold");
     console.log("Checking if all monsters are KO for:", currentPNJ.name);
     const messages = [
@@ -206,10 +206,15 @@ function allKO() {
         clearElementContents(screen); // Clearing the content explicitly
         screen.innerHTML = menuCat.fight;
         setupArena(currentPNJ, messages[0].text, indexPNJ);
-        displayMessagesSequentially(messages);
+        // displayMessagesSequentially(messages);
         
+        winScreen();
         unlockNextPNJ(); // Unlock the next PNJ
     }
+}
+
+function winScreen(){
+    console.log("t'as gagne gros pd");
 }
 
 function unlockNextPNJ() {
@@ -261,7 +266,7 @@ function attack(pnj, index) {
     checkOpponentKO();
     opponentMove(opponent, currentMonster);
     currentMonster.die();
-    setupArena(currentPNJ, message2, indexPNJ);
+    setupArena(currentPNJ, message1, indexPNJ);
 }
 
 function superAttackMove(pnj, index) {
@@ -286,24 +291,26 @@ function dodgeMove() {
 function opponentMove(monster, opponent){
     const actions = ['fight', 'superAttack', 'dodge'];
     const randomAction = actions[Math.floor(Math.random()*actions.length)];
-
-    switch (randomAction){
-        case 'fight':
-            console.log(`${monster.name} chooses to fight`);
-            monster.fight(opponent);
-            break;
-        case 'superAttack':
-            console.log(`${monster.name} chooses to do a super Attack`);
-            monster.superAttack(opponent);
-            break;
-        case 'dodge':
-            console.log(`${monster.name} chooses to dodge`);
-            monster.dodge();
-            break;
-        default:
-            console.log('No valid action was performed');
+    if(monster.currentHp > 0){
+        switch (randomAction){
+            case 'fight':
+                console.log(`${monster.name} chooses to fight`);
+                monster.fight(opponent);
+                break;
+            case 'superAttack':
+                console.log(`${monster.name} chooses to do a super Attack`);
+                monster.superAttack(opponent);
+                break;
+            case 'dodge':
+                console.log(`${monster.name} chooses to dodge`);
+                monster.dodge();
+                break;
+            default:
+                console.log('No valid action was performed');
+        }
+        setupArena(currentPNJ, indexPNJ);
     }
-    setupArena(currentPNJ, indexPNJ);
+
 }
 
 function teamMenu() {
