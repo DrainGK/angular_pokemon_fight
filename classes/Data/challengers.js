@@ -39,13 +39,13 @@ const challengers = {
         ),
         new Monster(
           "Bird Monster",
-          2,
-          2,
-          2,
           4,
+          4,
+          4,
+          8,
           0,
           monsterDex.birdMonster[1].front,
-          1
+          2
         ),
       ],
     },
@@ -137,13 +137,13 @@ const challengers = {
         ),
         new Monster(
           "Snake Monster",
-          6,
-          3,
-          3,
-          18,
+          8,
+          4,
+          4,
+          24,
           0,
           monsterDex.snakeMonster[1].front,
-          3
+          4
         ),
       ],
     },
@@ -186,13 +186,13 @@ const challengers = {
         ),
         new Monster(
           "Dofin Monster (full power)",
-          15,
-          15,
-          15,
-          15,
+          20,
+          20,
+          20,
+          20,
           0,
           monsterDex.doMonster[2].front,
-          4
+          5
         ),
       ],
     },
@@ -218,9 +218,9 @@ const challengers = {
         new Monster(
           "Tanuki Monster",
           8,
-          8,
           12,
-          4,
+          12,
+          8,
           0,
           monsterDex.tanukiMonster[1].front,
           4
@@ -238,8 +238,8 @@ const challengers = {
         new Monster(
           "Pomking Monster",
           10,
-          20,
-          20,
+          15,
+          15,
           10,
           0,
           monsterDex.pomMonster[2].front,

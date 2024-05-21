@@ -7,7 +7,6 @@ function setupChallengers() {
     const challengersContainer = document.querySelector(".challengers-icon");
     const challengersSelection = document.createElement("div");
     challengersSelection.className = "challengers-container"
-    challengersSelection.innerHTML??  "";
     challengersContainer.innerHTML?? "";  // Clear the container to avoid duplicating content
 
     // Loop through each group in the challengers object (e.g., villagers, temple)
@@ -187,9 +186,9 @@ const fightMenu = `
 
     <div class="fight-button-container">
         <span id="attack-button" class="button">Attack</span>
-        <span id="superattack-button " class="button">Super Attack</span>
-        <span id="team-button " class="button">Team</span>
-        <span id="dodge-button " class="button">Dodge</span>
+        <span id="superattack-button" class="button">Super Attack</span>
+        <span id="team-button" class="button">Team</span>
+        <span id="dodge-button" class="button">Dodge</span>
     </div>
 </div>
 `;
@@ -203,16 +202,14 @@ function clearElementContents(element) {
 function allKO() {
     const challengersIcon = document.querySelector(".challengers-icon");
     const goldUI = document.querySelector(".gold");
-    console.log("Checking if all monsters are KO for:", currentPNJ.name);
     const messages = [
         { text: `${text.defeat} ${currentPNJ.name}!`, delay: 3000 },
         { text: `${text.gold} ${gold} gold.`, delay: 5000 },
     ];
 
     if (currentPNJ && currentPNJ.team.every(monster => monster.currentHp <= 0)) {
-        console.log("All monsters KO: true, updating screen with new menu...");
         gold += currentPNJ.reward;
-        goldUI.innerText = `gold: ${gold}`;
+        goldUI.innerText = `${gold}`;
         clearElementContents(screen); // Clearing the content explicitly
         screen.innerHTML = menuCat.fight;
         setupArena(currentPNJ, messages[0].text, indexPNJ);
@@ -247,20 +244,20 @@ function unlockNextPNJ() {
     
     // Unlock the challenger
     challengers[currentGroup][groupIndex].lock = false;
-    
-    console.log(groupIndex);
-    console.log(currentGroup);
-    console.log(challengers[currentGroup][groupIndex].name);
 }
 
 function checkOpponentKO() {
     opponent = currentPNJ.team[indexPNJ];
-    console.log(`Checking if opponent ${opponent.name} is KO.`);
     if(opponent.currentHp <= 0 && indexPNJ <= 2) {
       if(opponent.level >= currentMonster.level){
         levelUp();
       }
         indexPNJ++;
+
+    } else if(opponent.currentHp <= 0 && indexPNJ === 3) {
+        if(opponent.level >= currentMonster.level){
+            levelUp();
+          }
     }
     setupArena(currentPNJ, indexPNJ);
     allKO();
@@ -270,33 +267,44 @@ function checkOpponentKO() {
 function attack(pnj, index) {
     opponent = pnj.team[index];
     const message1 = `Attacking: ${opponent.name} with ${currentMonster.name}`;
-    const message2 = "mange mon zob"
-    setupArena(currentPNJ, message1, indexPNJ);
-    console.log(`Attacking: ${opponent.name} with ${currentMonster.name}`);
-    currentMonster.fight(opponent);
+    if(opponent.luck > currentMonster.luck){
+        opponentMove(opponent, currentMonster);
+        currentMonster.fight(opponent);
+    } else {
+        currentMonster.fight(opponent);  
+        opponentMove(opponent, currentMonster);
+    }
     checkOpponentKO();
-    opponentMove(opponent, currentMonster);
     currentMonster.die();
     setupArena(currentPNJ, message1, indexPNJ);
 }
 
 function superAttackMove(pnj, index) {
-    console.log(`Attacking: ${opponent.name} with ${currentMonster.name}`);
-  opponent = pnj.team[index];
-  currentMonster.superAttack(opponent);
-  checkOpponentKO();
-  opponentMove(opponent, currentMonster);
-  currentMonster.die();
-  setupArena(currentPNJ, indexPNJ);
+    opponent = pnj.team[index];
+
+    if(opponent.luck > currentMonster.luck){
+        opponentMove(opponent, currentMonster);
+        currentMonster.superAttack(opponent);
+    } else {
+        console.log(opponent.luck);
+        currentMonster.superAttack(opponent);  
+        opponentMove(opponent, currentMonster);
+    }
+    checkOpponentKO();
+    currentMonster.die();
+    setupArena(currentPNJ, indexPNJ);
 }
 
 function dodgeMove() {
-  currentMonster.dodge();
-  console.log(currentMonster.isDodge);
-  opponentMove(opponent, currentMonster);
-  currentMonster.die();
-  setupArena(currentPNJ, indexPNJ);
-
+    if(opponent.luck > currentMonster.luck){
+        opponentMove(opponent, currentMonster);
+        currentMonster.dodge();
+    } else {
+        currentMonster.dodge();  
+        opponentMove(opponent, currentMonster);
+    }
+    currentMonster.die();
+    setupArena(currentPNJ, indexPNJ);
 }
 
 function opponentMove(monster, opponent){
@@ -325,8 +333,7 @@ function opponentMove(monster, opponent){
 }
 
 function teamMenu() {
-    console.log("oppening team menu...");
-  opponentMove(opponent, currentMonster);
-  currentMonster.die();
-  setupArena(currentPNJ, indexPNJ);
+    opponentMove(opponent, currentMonster);
+    currentMonster.die();
+    setupArena(currentPNJ, indexPNJ);
 }

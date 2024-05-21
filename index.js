@@ -37,7 +37,6 @@ function initializeStats() {
 }
 
 function statsChange(input) {
-  console.log(initialStats);
   const statId = input.id;
   const newValue = parseInt(input.value) || 0;
   const oldValue = initialStats[statId];
@@ -89,12 +88,10 @@ function createMonster() {
     1
   );
   currentMonster.levelStats = { ...initialStats };
-  console.log(currentMonster.pic);
   team.push(currentMonster);
   displayTeam();
 
   alert(`${currentMonster.name} created succesfully`);
-  console.log(team);
 }
 
 function resetFormAndStats() {
@@ -134,10 +131,6 @@ function updateMonster() {
   document.getElementById("formMode").value = "create";
   document.querySelector(".input-sprite-container").style.display = "flex";
   document.querySelector(".role-container").style.display = "flex"
-
-  
-  
-  console.log("mode switched to create");
 }
 
 function switchToUpdateMode(monster) {
@@ -191,8 +184,7 @@ window.onload = initializeForm;
 initializeStats();
 
 function levelUp(){
-  formTitle.innerText = "Upgrade your monster"
-  console.log("level up");
+  formTitle.innerText = "Level UP"
   modal.style.display = "flex";
   overlay.style.display = "block";
 

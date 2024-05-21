@@ -84,8 +84,12 @@ fightButton.addEventListener("click", function () {
 });
 
 shopButton.addEventListener("click", function () {
+  const coin = document.querySelector(".gold-container");
+  coin.style.display = "flex";
+
   toggleMenu();
   screen.innerHTML = menuCat.shop;
+  displayShopItems();
 });
 questButton.addEventListener("click", function () {
   screen.innerHTML = menuCat.quest;

@@ -11,7 +11,7 @@ const menuCat = {
        <div class="challengers-icon"> </div>
     `,
   shop: `
-        <h1>SHOP
+        <div id="shop"></div>
     `,
   quest: `
         <h1>QUEST
