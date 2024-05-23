@@ -57,6 +57,7 @@ function setupChallengers() {
                 icon.addEventListener("click", () => {
                     indexPNJ = 0;
                     setupArena(pnj);
+                    goldUI.classList.remove("gold-open");
                     console.log(`Clicked on: ${pnj.name} from ${groupName}`);
                 });
             }
@@ -208,7 +209,7 @@ function allKO() {
 
     if (currentPNJ && currentPNJ.team.every(monster => monster.currentHp <= 0)) {
         gold += currentPNJ.reward;
-        goldUI.innerText = `${gold}`;
+        goldText.innerText = `${gold}`;
         clearElementContents(screen); // Clearing the content explicitly
         screen.innerHTML = menuCat.fight;
         setupArena(currentPNJ, messages[0].text, indexPNJ);

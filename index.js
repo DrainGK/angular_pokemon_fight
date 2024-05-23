@@ -40,8 +40,10 @@ function statsChange(input) {
   const statId = input.id;
   const newValue = parseInt(input.value) || 0;
   const oldValue = initialStats[statId];
-  const levelOldValue = currentMonster?.levelStats[statId] ?? 0; // Use level stats if available
+  const levelOldValue = currentMonster?.levelStats[statId] ?? 0;
   const difference = newValue - oldValue;
+
+  console.log(`Stat Change Debug - statId: ${statId}, newValue: ${newValue}, oldValue: ${oldValue}, difference: ${difference}, remainingPoints: ${remainingPoints}`);
 
   if (newValue < levelOldValue) {
     input.value = levelOldValue;
@@ -52,10 +54,28 @@ function statsChange(input) {
   if (remainingPoints - difference >= 0 && newValue >= levelOldValue) {
     remainingPoints -= difference;
     initialStats[statId] = newValue;
+
+    if (currentMonster) {
+      currentMonster.levelStats[statId] = newValue;
+      // Update the monster's actual stat
+      if (statId === "monsterHp") {
+        currentMonster.life = newValue;
+        currentMonster.maxHp = newValue;
+      } else if (statId === "monsterAttack") {
+        currentMonster.attack = newValue;
+      } else if (statId === "monsterDefense") {
+        currentMonster.defense = newValue;
+      } else if (statId === "monsterLuck") {
+        currentMonster.luck = newValue;
+      }
+    }
+
+    console.log(`Updated initialStats: ${JSON.stringify(initialStats)}`);
+    console.log(`Updated levelStats: ${JSON.stringify(currentMonster.levelStats)}`);
     updatePointsDisplay();
   } else {
     input.value = oldValue;
-    alert("not enough points");
+    alert("Not enough points");
   }
 }
 

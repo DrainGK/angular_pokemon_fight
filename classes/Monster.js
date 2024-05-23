@@ -19,7 +19,7 @@ class Monster {
   }
 
   fight(opponent) {
-    if (!this.rest && opponent.isDodge === false && this.currentHp != 0){
+    if (!this.rest && opponent.isDodge === false && this.currentHp > 0){
       
       if (Math.random() < 0.05 - this.luck * 0.005) {
         console.log(`${this.name}'s attack missed`);
@@ -45,7 +45,7 @@ class Monster {
   }
 
   superAttack(opponent) {
-    if (!this.rest && opponent.isDodge === false && this.currentHp != 0) {
+    if (!this.rest && opponent.isDodge === false && this.currentHp > 0) {
       // Correct use of boolean check
       this.fight(opponent);
       console.log(`${this.name} is attacking again`);

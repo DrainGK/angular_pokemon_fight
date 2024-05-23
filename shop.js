@@ -7,7 +7,7 @@ function displayShopItems(){
     itemsContainer.className = "items-container";
     itemsContainer.innerHTML = "";
     shop.appendChild(shopTitle)
-    goldUI.innerText = `${gold}`;
+    goldText.innerText = `${gold}`;
 
     let desc = "Choose an Item to reinforce your mythics!";
 
@@ -26,8 +26,17 @@ function displayShopItems(){
         itemsContainer.appendChild(itemDiv);
 
         itemDiv.addEventListener("click", ()=>{
-            gold < item.cost ? alert("not enough gold") : teamModale(item);
+           if(team.length != 0) gold < item.cost ? alert("not enough gold") : teamModale(item);
+           else {
+               descContainer.style.color = "#00262e"
+               descContainer.innerText = "You do not have any Mythics";
+            } 
+            
+        });
+        
+        itemDiv.addEventListener("mouseover", ()=>{
             descContainer.innerText = item.desc;
+            descContainer.style.color = "white"
         })
     });
     shop.appendChild(itemsContainer);
@@ -56,6 +65,9 @@ function selectItem(item, monster) {
             break;
         case "prot":
             console.log("you chose: ", item.name);
+            monster.defense += 5;
+            monster.levelStats.monsterDefense = monster.defense; 
+            console.log(monster.levelStats);
             break;
         case "speed":
             console.log("you chose: ", item.name);
@@ -65,27 +77,48 @@ function selectItem(item, monster) {
             break;
         case "power":
             console.log("you chose: ", item.name);
+            monster.attack += 5;
+            monster.levelStats.monsterAttack = monster.attack; 
+            console.log(monster.levelStats);
             break;
         case "life":
             console.log("you chose: ", item.name);
+            monster.life += 5;
+            monster.levelStats.monsterHp = monster.life; 
+            console.log(monster.levelStats);
             break;
         default:
             console.log("Invalid item tag");
             break;
     }
+    initialStats = monster.levelStats;
 }
 
 function teamModale(item){
+
     const shop = document.getElementById("shop");
+    const overlay = document.createElement("div");
+    overlay.className = "team-modale-overlay";
+
+    const modaleContent = document.createElement("div");
+    modaleContent.classList = "team-modale";
 
     const teamContainer = document.createElement("div");
-    teamContainer.classList = "team-modale";
+
+    const modaleTitle = document.createElement("h3");
+    modaleTitle.innerText = "Select your Mythic";
     
     teamContainer.innerHTML = menuCat.team;
 
-    shop.appendChild(teamContainer);
+    modaleContent.appendChild(modaleTitle)
+    modaleContent.appendChild(teamContainer)
+
+    shop.appendChild(modaleContent);
+    shop.appendChild(overlay);
 
     displayTeam();
+
+    goldUI.classList.add("gold-open");
 
     teamContainer.addEventListener('click', function(event) {
         let target = event.target;
@@ -96,10 +129,16 @@ function teamModale(item){
   
             if (monster && gold >= item.cost) {
                 gold -= item.cost;
-                goldUI.innerText = `${gold}`;
+                goldText.innerText = `${gold}`;
                 selectItem(item, monster);
                 displayTeam(); // Update UI to reflect change
             }
         }
     });
+
+    overlay.addEventListener("click", function(){
+        modaleContent.style.display = "none";
+        goldUI.classList.remove("gold-open");
+        this.style.display = "none";
+    })
 }

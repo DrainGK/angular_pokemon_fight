@@ -42,6 +42,12 @@ body{
     position: absolute;
     top: 2%;
     right: 1%;
+    z-index: 2;
+}
+
+.gold-open{
+    top: 8%;
+    right: 12%;
 }
 
 .menu{
@@ -111,7 +117,7 @@ body{
     height: 75vh;
 
     background: radial-gradient(#ffc100, #ff9600);
-    box-shadow: 0px 0px 50px #4D3A4D;
+    box-shadow: 0px 0px 50px #00262e;
 
     z-index: -10;
 }
@@ -1193,11 +1199,51 @@ audio{
 .team-modale{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: column;
 
-    height: 60%;
-    width: 60%;
+    height: 90%;
+    width: 80%;
 
     position: absolute;
+    background-color: white;
+    background-image: url(/img/wave-yellow.svg);
+    background-size: 25%;
+
+    border: 6px solid #ffc100;
+    border-radius: 50px;
+
+    box-shadow: 0px 0px 15px #00262e6c;
+    animation: pan 30s linear infinite;
+    z-index: 1;
+}
+
+.team-modale > h3{
+    width: 50%;
+
+    padding: 1rem 0;
+
+    background-color: #ffc100;
+
+    border-radius: 50px;
+
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+
+    box-shadow: 0px 0px 15px #00262e34;
+}
+
+.team-modale-overlay{
+    position: fixed;
+    height: 100%;
+    width: 100%;
     background-color: #00262e;
+    background-image: url(/img/hideout-blue.svg);
+    background-size: 10%;
+    opacity: 0.3;
+    z-index: 0;
+
+    animation: pan 30s linear infinite;
 }

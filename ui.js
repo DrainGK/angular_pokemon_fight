@@ -18,7 +18,8 @@ const line3 = document.querySelector(".line-3");
 const audio = document.getElementById("audio");
 const audioPara = document.querySelector(".audio-parameter");
 
-const goldUI = document.querySelector(".gold");
+const goldUI = document.querySelector(".gold-container");
+const goldText = document.querySelector(".gold");
 
 let currentMonsterId = null;
 let isSelected = false;
@@ -71,6 +72,7 @@ monsterButton.addEventListener("click", function () {
     screen.innerHTML = menuCat.team;
     attachEventListeners();
     displayTeam();
+    goldUI.style.display = "none"
 
 });
 
@@ -83,12 +85,13 @@ fightButton.addEventListener("click", function () {
   toggleMenu();
   screen.innerHTML = menuCat.fight;
   setupChallengers();
+  goldUI.style.display = "none"
+
 });
 
 shopButton.addEventListener("click", function () {
-  const coin = document.querySelector(".gold-container");
-  coin.style.display = "flex";
-
+  goldUI.style.display = "flex";
+  goldUI.classList.remove("gold-open");
   toggleMenu();
   screen.innerHTML = menuCat.shop;
   displayShopItems();
@@ -99,7 +102,8 @@ questButton.addEventListener("click", function () {
 });
 
 function attachEventListeners() {
-  screen.addEventListener('click', function(event) {
+  const teamMenu = document.querySelector(".create-monster-container")
+  teamMenu.addEventListener('click', function(event) {
       let target = event.target;
 
       if (target.classList.contains('plus')) {
