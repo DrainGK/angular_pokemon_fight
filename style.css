@@ -1189,3 +1189,15 @@ audio{
     color: white;
     text-shadow: 0px 0px 10px #00262ec2;
 }
+
+.team-modale{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 60%;
+    width: 60%;
+
+    position: absolute;
+    background-color: #00262e;
+}

@@ -3,7 +3,7 @@ const levelUpButton = document.getElementById("levelUp");
 const points = document.getElementById("points");
 const inputs = document.querySelectorAll(".number");
 const roleContainer = document.querySelector(".role-container")
-let gold = 0;
+let gold = 10000;
 let initialStats = {};
 
 function initializeForm() {
@@ -90,6 +90,7 @@ function createMonster() {
   currentMonster.levelStats = { ...initialStats };
   team.push(currentMonster);
   displayTeam();
+  console.log(currentMonster);
 
   alert(`${currentMonster.name} created succesfully`);
 }

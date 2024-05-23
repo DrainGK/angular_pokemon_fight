@@ -80,7 +80,7 @@ class Monster {
     if (this.currentHp <= 0) {
       console.log(`${this.name} is KO`);
       currentMonsterId++;
-      currentMonster = team[currentMonsterId];
+      if(team[currentMonsterId]) currentMonster = team[currentMonsterId];
       console.log(currentMonster);
     }
   }

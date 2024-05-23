@@ -18,6 +18,8 @@ const line3 = document.querySelector(".line-3");
 const audio = document.getElementById("audio");
 const audioPara = document.querySelector(".audio-parameter");
 
+const goldUI = document.querySelector(".gold");
+
 let currentMonsterId = null;
 let isSelected = false;
 let remainingPoints = 0;

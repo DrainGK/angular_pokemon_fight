@@ -201,7 +201,6 @@ function clearElementContents(element) {
 
 function allKO() {
     const challengersIcon = document.querySelector(".challengers-icon");
-    const goldUI = document.querySelector(".gold");
     const messages = [
         { text: `${text.defeat} ${currentPNJ.name}!`, delay: 3000 },
         { text: `${text.gold} ${gold} gold.`, delay: 5000 },
