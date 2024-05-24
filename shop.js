@@ -1,13 +1,37 @@
 function displayShopItems(){
     const shop = document.getElementById("shop");
     shop.innerHTML = "";
+
     const itemsContainer = document.createElement("div");
     const shopTitle = document.createElement("h2");
-    shopTitle.innerText = "SHOP"
+    shopTitle.innerText = "SHOP";
     itemsContainer.className = "items-container";
-    itemsContainer.innerHTML = "";
-    shop.appendChild(shopTitle)
-    goldText.innerText = `${gold}`;
+    shop.appendChild(shopTitle);
+
+    const next = document.createElement("span");
+    next.className = "next";
+    next.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 6L15 12L9 18" stroke="#ff9600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    `;
+    
+    const prev = document.createElement("span");
+    prev.className = "prev";
+    prev.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 6L15 12L9 18" stroke="#ff9600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    `;
+
+    shop.appendChild(next);
+    shop.appendChild(prev);
+
+    const wrapper = document.createElement("div");
+    wrapper.id = "wrapper";
+
+    const carousel = document.createElement("div");
+    carousel.id = "carousel";
 
     let desc = "Choose an Item to reinforce your mythics!";
 
@@ -15,7 +39,6 @@ function displayShopItems(){
         const itemDiv = document.createElement("div");
         itemDiv.className = "items";
         itemDiv.style.backgroundImage = `url(${item.img})`;
-        console.log(item.img);
         itemDiv.innerHTML = `
             <span class="item-price">
                 <img src="./img/coin.gif" alt="coin" height="20" width="20">
@@ -26,26 +49,56 @@ function displayShopItems(){
         itemsContainer.appendChild(itemDiv);
 
         itemDiv.addEventListener("click", ()=>{
-           if(team.length != 0) gold < item.cost ? alert("not enough gold") : teamModale(item);
-           else {
-               descContainer.style.color = "#00262e"
+           if(team.length != 0) {
+               if(gold < item.cost) {
+                   alert("not enough gold");
+               } else {
+                   teamModale(item);
+               }
+           } else {
+               descContainer.style.color = "#00262e";
                descContainer.innerText = "You do not have any Mythics";
-            } 
-            
+            }
         });
-        
+
         itemDiv.addEventListener("mouseover", ()=>{
             descContainer.innerText = item.desc;
-            descContainer.style.color = "white"
-        })
+            descContainer.style.color = "white";
+        });
     });
-    shop.appendChild(itemsContainer);
+    console.log("Total width of items: ", items.reduce((acc, item) => acc + item.offsetWidth, 0));
+
+    carousel.appendChild(itemsContainer);
+    wrapper.appendChild(carousel);
+    shop.appendChild(wrapper);
 
     const descContainer = document.createElement("div");
     descContainer.className = "desc-container";
     descContainer.innerText = desc;
     shop.appendChild(descContainer);
+    const gap = 64;
+    let width = carousel.offsetWidth; 
+
+    
+    
+    next.addEventListener("click", e => {
+        carousel.scrollBy(width + gap, 0);
+        prev.style.display = "flex";
+        if (itemsContainer.scrollWidth - carousel.scrollLeft <= carousel.clientWidth) {
+            next.style.display = "none";
+        }
+    });
+    prev.addEventListener("click", e => {
+        carousel.scrollBy(-(width + gap), 0);
+        next.style.display = "flex";
+        if (carousel.scrollLeft <= 0) {
+            prev.style.display = "none";
+        }
+    });
+    
+    window.addEventListener("resize", e => (width = carousel.offsetWidth));
 }
+
 
 
 
