@@ -99,6 +99,7 @@ shopButton.addEventListener("click", function () {
 questButton.addEventListener("click", function () {
   screen.innerHTML = menuCat.quest;
   toggleMenu();
+  setupQuestMenu();
 });
 
 function attachEventListeners() {

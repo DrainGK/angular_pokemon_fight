@@ -14,7 +14,7 @@ const menuCat = {
         <div id="shop"></div>
     `,
   quest: `
-        <h1>QUEST
+  <div id="quest-menu"></div>
     `,
 };
 
