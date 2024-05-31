@@ -119,7 +119,7 @@ function setupArena(pnj, message) {
                     <div class="monster-ui">
                         <div>
                             <p class="name">${currentMonster.name}</p>
-                            <p>Lv.${currentMonster.level}</p>
+                            <p>Lv.${currentMonster.level === 10 ? " MAX" : currentMonster.level}</p>
                         </div>
                     <span class="health-bar">
                             <span class="health"
@@ -138,7 +138,7 @@ function setupArena(pnj, message) {
                     <div class="monster-ui">
                         <div>
                             <p class="name">${monster.name}</p>
-                            <p>Lv.${monster.level}</p>
+                            <p>Lv.${monster.level === 10 ? " MAX" : monster.level}</p>
                         </div>
                         <span class="health-bar">
                             <span class="health"

@@ -3,7 +3,7 @@ const levelUpButton = document.getElementById("levelUp");
 const points = document.getElementById("points");
 const inputs = document.querySelectorAll(".number");
 const roleContainer = document.querySelector(".role-container")
-let gold = 10000;
+let gold = 0;
 let initialStats = {};
 
 function initializeForm() {
@@ -180,7 +180,7 @@ function displayTeam(){
       button.innerHTML = `
 
       <span>${teamPosition}</span>
-      <h2>${team[index].name} Lv${team[index].level}</h2>
+      <h2>${team[index].name} Lv${team[index].level === 10 ? " MAX" : team[index].level}</h2>
       <div class="health-bar">
         <span class="health"
           style="width: calc((${team[index].currentHp} / ${team[index].maxHp}) * 100%);

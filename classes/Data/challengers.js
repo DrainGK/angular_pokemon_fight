@@ -411,7 +411,7 @@ const challengers = {
           4,
           0,
           monsterDex.gossMonster[2].front,
-          4
+          10
         ),
         new Monster(
           "Tanuki Monster",
@@ -421,7 +421,7 @@ const challengers = {
           4,
           0,
           monsterDex.tanukiMonster[1].front,
-          4
+          10
         ),
         new Monster(
           "Python Monster",
@@ -431,7 +431,7 @@ const challengers = {
           24,
           0,
           monsterDex.pythonMonster[1].front,
-          4
+          10
         ),
         new Monster(
           "Pomking Monster",
@@ -441,7 +441,7 @@ const challengers = {
           10,
           0,
           monsterDex.pomMonster[2].front,
-          5
+          10
         ),
       ],
     },

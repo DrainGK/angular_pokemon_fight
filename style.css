@@ -1281,38 +1281,70 @@ audio{
 
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
+    align-items: center;
+    justify-content: center;
 }
 
-.main-quest-title, .side-quest-title{
-    height: 25%;
-    width: 100%;
+.quest-menu-container{
+    height: 80%;
+    width: 80%;
 
-    color: white;
-    font-size: 3rem;
-    padding:0 2rem;
+    display: flex;
 
     background-color: #ff9600;
-    background-image: url(/img/hideout.svg);
-    background-size: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: start;
 
-    border: 4px solid white;
+    border: 2px solid white;
+    outline: 4px solid #ff9600;
+    border-radius: 25px;
 
-    animation: pan 60s linear infinite;
+    box-shadow: 0px 0px 15px #00262e94;
+
 }
 
-.main-quest-container{
+.quest-container{
+    width: 55%;
+    height: 90%;
+
     display: flex;
     flex-direction: column;
 
+    align-items: center;
+    justify-content: space-around;
+}
+
+.title-container{
+    width: 80%;
+   
+
+    display: flex;
+    padding: 1.5rem;
+
+    color: white;
+
+    border-radius: 50px;
+
+    background-color: #00262e;
+}
+
+.main-quest-title, .side-quest-title{
+    width: 50%;
+    text-align: center;
+}
+
+.main-quest-container, .side-quest-container{
     width: 100%;
-    height: 50%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 
     overflow: auto;
+}
+
+.main-quest-title:hover, .side-quest-title:hover{
+    background-color: white;
+    color: #00262e;
 }
 
 .side-quest-container{
@@ -1320,13 +1352,37 @@ audio{
 }
 
 .quest{
-    display: flex;
-    align-items: center;
-    padding: 2rem;
 
-    border-bottom: 1px solid white;
-    background-color: #ff9600;
+    width: 85%;
+    padding: 1.5rem 0;
+    margin: 1rem 0;
+    font-size: 0.7rem;
+    color: white;
+    border-radius: 5px;
 
-    box-shadow: inset 0px 0px 15px #00262e34;
+    background-color: #00262e;
+    background-image: url(/img/wave-white.svg);
+    background-size: 20%;
+
+    box-shadow:  0px 0px 15px #00262e94;
+
+    animation: pan 30s linear infinite;
+
 
 }
+
+.quest-desc-container{
+    width: 45%;
+    height: 100%;
+
+    background-color: #00262e;
+    background-image: url(/img/wave-white.svg);
+    background-size: 20%;
+
+    border-radius: 23px;
+    box-shadow: 0px 0px 15px #00262e94;
+
+    animation: pan 30s linear infinite;
+}
+
+

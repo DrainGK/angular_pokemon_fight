@@ -1,6 +1,16 @@
 function setupQuestMenu(){
     const questMenu = document.getElementById("quest-menu");
 
+    const questMenuContainer = document.createElement("div");
+    questMenuContainer.classList = "quest-menu-container";
+    const questContainer = document.createElement("div");
+    questContainer.classList = "quest-container";
+    const descContainer = document.createElement("div");
+    descContainer.classList = "quest-desc-container";
+
+    const titleContainer = document.createElement("div");
+    titleContainer.classList = "title-container";
+
     const mainQuestTitle = document.createElement("h2");
     mainQuestTitle.classList = "main-quest-title";
     mainQuestTitle.innerText = "MAIN QUEST";
@@ -40,9 +50,25 @@ function setupQuestMenu(){
     });
     console.log(mainQuestTitle, mainQuestContainer, sideQuestTitle, sideQuestContainer);
 
-    questMenu.appendChild(mainQuestTitle);
-    questMenu.appendChild(mainQuestContainer);
-    questMenu.appendChild(sideQuestTitle);
-    questMenu.appendChild(sideQuestContainer);
+    questMenu.appendChild(questMenuContainer);
+    questMenuContainer.appendChild(questContainer);
+    questMenuContainer.appendChild(descContainer);
+
+    titleContainer.appendChild(mainQuestTitle)
+    titleContainer.appendChild(sideQuestTitle)
+
+    questContainer.appendChild(titleContainer);
+    questContainer.appendChild(mainQuestContainer);
+    questContainer.appendChild(sideQuestContainer);
+
+    mainQuestTitle.addEventListener("click", function(){
+        mainQuestContainer.classList.toggle("open-main");
+        sideQuestContainer.classList.toggle("open-side");
+    })
+
+    sideQuestTitle.addEventListener("click", function(){
+        sideQuestContainer.classList.toggle("open-side");
+        mainQuestContainer.classList.toggle("open-main");
+    })
 }
 

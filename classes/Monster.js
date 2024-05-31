@@ -72,8 +72,10 @@ class Monster {
   }
 
   levelUp() {
-    this.level++;
-    this.points += 10;
+    if(this.level <= 10){
+      this.level++;
+      this.points += 10;
+    }
   }
 
   die() {
