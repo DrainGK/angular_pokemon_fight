@@ -1317,24 +1317,32 @@ audio{
    
 
     display: flex;
-    padding: 1.5rem;
 
     color: white;
 
-    border-radius: 50px;
 
-    background-color: #00262e;
 }
 
 .main-quest-title, .side-quest-title{
     width: 50%;
+    padding: 1.5rem;
     text-align: center;
+}
+
+.main-quest-title{
+    border-radius: 50px 0 0 50px ;
+    background-color: white;
+    color: #00262e;
+}
+
+.side-quest-title{
+    border-radius: 0 50px 50px 0 ;
+    background-color: #00262e;
 }
 
 .main-quest-container, .side-quest-container{
     width: 100%;
     height: 60%;
-    display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
@@ -1343,12 +1351,33 @@ audio{
 }
 
 .main-quest-title:hover, .side-quest-title:hover{
+    cursor: pointer;
+}
+
+.selected-main-quest{
+    background-color: #00262e;
+    color: white;
+}
+
+.selected-side-quest{
     background-color: white;
     color: #00262e;
 }
 
+.main-quest-container{
+    display: flex;
+}
+
 .side-quest-container{
     display: none;
+}
+
+.open-main{
+    display: none;
+}
+
+.open-side{
+    display: flex;
 }
 
 .quest{
@@ -1359,6 +1388,7 @@ audio{
     font-size: 0.7rem;
     color: white;
     border-radius: 5px;
+    text-align: center;
 
     background-color: #00262e;
     background-image: url(/img/wave-white.svg);
@@ -1371,11 +1401,21 @@ audio{
 
 }
 
+.quest:hover{
+    cursor: pointer;
+}
+
 .quest-desc-container{
     width: 45%;
     height: 100%;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
     background-color: #00262e;
+    color: white;
     background-image: url(/img/wave-white.svg);
     background-size: 20%;
 
