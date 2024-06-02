@@ -32,14 +32,15 @@ function setupQuestMenu() {
     questDiv.classList = "quest";
     questDiv.innerHTML = `
             <h3>
-                ${quest.desc}
+            ${quest.title}
             </h3>
         `;
     mainQuestContainer.appendChild(questDiv);
 
     questDiv.addEventListener("click", () => {
       descContainer.innerHTML = `
-              <h3>${quest.type}</h3>
+              <h3>${quest.type} quest</h3>
+              <p class="quest-title"> ${quest.title}</p>
               <p>${quest.desc}</p>
               <p>${quest.reward}</p>
           `;
@@ -51,14 +52,15 @@ function setupQuestMenu() {
     questDiv.classList = "quest";
     questDiv.innerHTML = `
             <h3>
-                ${quest.desc}
+            ${quest.title}
             </h3>
         `;
     sideQuestContainer.appendChild(questDiv);
 
     questDiv.addEventListener("click", () => {
       descContainer.innerHTML = `
-            <h3>${quest.type}</h3>
+            <h3>${quest.type} quest</h3>
+            <p class="quest-title"> ${quest.title}</p>
             <p>${quest.desc}</p>
             <p>${quest.reward}</p>
         `;
