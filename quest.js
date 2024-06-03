@@ -59,9 +59,16 @@ function setupQuestMenu() {
 
     questDiv.addEventListener("click", () => {
       descContainer.innerHTML = `
-            <h3>${quest.type} quest</h3>
+        <h3>${quest.type} quest</h3>
+        <div class="divider">
             <p class="quest-title"> ${quest.title}</p>
-            <p>${quest.desc}</p>
+            <span class="line"></span>
+        </div>
+        <p>${quest.desc}</p>
+        <div class="divider">
+            <p>Rewards</p>
+            <span class="line"></span>
+        </div>
             <p>${quest.reward}</p>
         `;
     });

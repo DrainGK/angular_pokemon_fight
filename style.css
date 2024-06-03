@@ -1292,13 +1292,15 @@ audio{
     display: flex;
 
     background-color: #ff9600;
+    background-image: url(/img/hideout.svg);
+    background-size: 5%;
 
     border: 2px solid white;
     outline: 4px solid #ff9600;
     border-radius: 25px;
 
     box-shadow: 0px 0px 15px #00262e94;
-
+    animation: pan 60s linear infinite;
 }
 
 .quest-container{
@@ -1372,6 +1374,21 @@ audio{
     display: none;
 }
 
+.main-quest-container::-webkit-scrollbar,.side-quest-container::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .main-quest-container::-webkit-scrollbar-track,.side-quest-container::-webkit-scrollbar {
+    background: #00262e;
+    border-radius: 10px;
+
+  }
+  
+  .main-quest-container::-webkit-scrollbar-thumb,.side-quest-container::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 10px;
+  }
+
 .open-main{
     display: none;
 }
@@ -1381,14 +1398,12 @@ audio{
 }
 
 .quest{
-
     width: 85%;
     padding: 1.5rem 0;
     margin: 1rem 0;
-    font-size: 0.7rem;
+    font-size: 1rem;
     color: white;
-    border-radius: 5px;
-    text-align: center;
+    border-radius: 50px;
 
     background-color: #00262e;
     background-image: url(/img/wave-white.svg);
@@ -1397,8 +1412,10 @@ audio{
     box-shadow:  0px 0px 15px #00262e94;
 
     animation: pan 30s linear infinite;
+}
 
-
+.quest > h3{
+    padding: 0 2rem;
 }
 
 .quest:hover{
@@ -1413,7 +1430,7 @@ audio{
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: space-evenly;
 
     background-color: #00262e;
@@ -1427,6 +1444,14 @@ audio{
     animation: pan 30s linear infinite;
 }
 
+.quest-desc-container > h3, .quest-desc-container > p{
+    padding: 0 3rem;
+}
+
+.quest-title{
+    font-size: 2.5rem;
+}
+
 .quest-desc-container > h3{
     font-size: 3.5rem;
     text-transform: uppercase;
@@ -1434,7 +1459,23 @@ audio{
 
     position: absolute;
     top: 2%;
-    left: 5%;
+    left: 2%;
 }
+
+.line{
+    display: block;
+    width: 80%;
+    margin: 1rem 0;
+    height: 1px;
+    background-color: white;
+    z-index: 20;
+}
+
+.divider{
+    width: 100%;
+    height: fit-content;
+    margin: 0 3rem;
+}
+
 
 
