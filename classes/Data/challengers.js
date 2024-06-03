@@ -186,10 +186,10 @@ const challengers = {
         ),
         new Monster(
           "Dofin Monster (full power)",
-          20,
-          20,
-          20,
-          20,
+          15,
+          15,
+          15,
+          15,
           0,
           monsterDex.doMonster[2].front,
           5

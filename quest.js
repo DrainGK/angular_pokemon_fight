@@ -39,11 +39,19 @@ function setupQuestMenu() {
 
     questDiv.addEventListener("click", () => {
       descContainer.innerHTML = `
-              <h3>${quest.type} quest</h3>
-              <p class="quest-title"> ${quest.title}</p>
-              <p>${quest.desc}</p>
-              <p>${quest.reward}</p>
-          `;
+        <h3>${quest.type} quest</h3>
+        <div class="divider">
+            <p class="quest-title"> ${quest.title}</p>
+            <span class="line"></span>
+        </div>
+        <p>${quest.desc}</p>
+        <div class="divider">
+            <p>Rewards</p>
+            <span class="line"></span>
+        </div>
+            <p>${quest.reward}</p>
+        `;
+      questValidation(quest);
     });
   });
 
@@ -58,6 +66,7 @@ function setupQuestMenu() {
     sideQuestContainer.appendChild(questDiv);
 
     questDiv.addEventListener("click", () => {
+      console.log(challengers.Villagers[4].win);
       descContainer.innerHTML = `
         <h3>${quest.type} quest</h3>
         <div class="divider">
@@ -71,6 +80,7 @@ function setupQuestMenu() {
         </div>
             <p>${quest.reward}</p>
         `;
+      questValidation(quest.reward);
     });
   });
 
@@ -98,4 +108,42 @@ function setupQuestMenu() {
     sideQuestContainer.classList.toggle("open-side");
     mainQuestContainer.classList.toggle("open-main");
   });
+}
+
+function questValidation(quest) {
+  switch (quest.reward) {
+    case "blue_card":
+      console.log(quest.reward, quest.condition);
+      break;
+    case "red_card":
+      console.log(quest.reward);
+      break;
+    case "green_card":
+      console.log(quest.reward);
+      break;
+    case "yellow_card":
+      console.log(quest.reward);
+      break;
+    case "purple_card":
+      console.log(quest.reward);
+      break;
+    case "level":
+      console.log(quest.reward);
+      break;
+    case "400":
+      console.log(quest.reward);
+      break;
+    case "800":
+      console.log(quest.reward);
+      break;
+    case "1200":
+      console.log(quest.reward);
+      break;
+    case "1600":
+      console.log(quest.reward);
+      break;
+    case "2000":
+      console.log(quest.reward);
+      break;
+  }
 }

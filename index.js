@@ -3,7 +3,7 @@ const levelUpButton = document.getElementById("levelUp");
 const points = document.getElementById("points");
 const inputs = document.querySelectorAll(".number");
 const roleContainer = document.querySelector(".role-container")
-let gold = 0;
+let gold = 100000;
 let initialStats = {};
 
 function initializeForm() {

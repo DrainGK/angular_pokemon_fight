@@ -6,7 +6,7 @@ const quests = [
     background: "",
     reward_img: "",
     reward: "blue_card",
-    condition: "",
+    condition: challengers.Villagers[4].win === true ,
     available: false,
     lock: false,
   },
