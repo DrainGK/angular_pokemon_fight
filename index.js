@@ -204,21 +204,21 @@ function displayTeam(){
 window.onload = initializeForm;
 initializeStats();
 
-function levelUp(){
+function levelUp(monster){
   formTitle.innerText = "Level UP"
   modal.style.display = "flex";
   overlay.style.display = "block";
 
-  currentMonster.levelUp();
-  if(currentMonster.level === 4 && currentMonster.pic[2]){
-    currentMonster.current = 2;
-  } else if (currentMonster.level === 7 && currentMonster.pic[3]){
-    currentMonster.current = 3;
+  monster.levelUp();
+  if(monster.level === 4 && monster.pic[2]){
+    monster.current = 2;
+  } else if (monster.level === 7 && monster.pic[3]){
+    monster.current = 3;
   }
-  remainingPoints = currentMonster.points;
+  remainingPoints = monster.points;
   updatePointsDisplay();
-  switchToUpdateMode(currentMonster);
-  console.log(currentMonster);
+  switchToUpdateMode(monster);
+  console.log(monster);
   console.log(team);
 } 
 

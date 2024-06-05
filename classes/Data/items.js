@@ -27,6 +27,15 @@ const items = [
         limit: 1
     },
     {
+        name: "Power stone",
+        desc: "when a mythic interact with the stone his power will increase.",
+        cost: 1000,
+        tag: "level",
+        img: "/img/items/power_stone.webp",
+        stack: false,
+        limit: 1
+    },
+    {
         name: "Protection dust",
         desc: "This magical dust boost mythics defense.",
         cost: 200,

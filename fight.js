@@ -250,13 +250,13 @@ function checkOpponentKO() {
     opponent = currentPNJ.team[indexPNJ];
     if(opponent.currentHp <= 0 && indexPNJ <= 2) {
       if(opponent.level >= currentMonster.level){
-        levelUp();
+        levelUp(currentMonster);
       }
         indexPNJ++;
 
     } else if(opponent.currentHp <= 0 && indexPNJ === 3) {
         if(opponent.level >= currentMonster.level){
-            levelUp();
+            levelUp(currentMonster);
           }
     }
     setupArena(currentPNJ, indexPNJ);

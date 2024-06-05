@@ -103,7 +103,7 @@ function displayShopItems(){
 
 
 function selectItem(item, monster) {
-    switch(item.tag) {
+    switch(item.tag || item.reward) {
         case "health":
             console.log("you chose: ", item.name, monster.currentHp);
             if(monster.currentHp > 0) monster.currentHp = monster.maxHp;
@@ -139,6 +139,10 @@ function selectItem(item, monster) {
             monster.life += 5;
             monster.levelStats.monsterHp = monster.life; 
             console.log(monster.levelStats);
+            break;
+        case "level":
+            console.log("you chose: ", item.name);
+            levelUp(monster);
             break;
         default:
             console.log("Invalid item tag");

@@ -27,6 +27,8 @@ function setupQuestMenu() {
   const mainQuest = quests.filter((quest) => quest.type === "main");
   const sideQuest = quests.filter((quest) => quest.type === "side");
 
+  updateQuestAvailability(quests);
+
   mainQuest.forEach((quest) => {
     const questDiv = document.createElement("div");
     questDiv.classList = "quest";
@@ -36,6 +38,8 @@ function setupQuestMenu() {
             </h3>
         `;
     mainQuestContainer.appendChild(questDiv);
+
+    if (quest.available) questDiv.classList.add("available");
 
     questDiv.addEventListener("click", () => {
       descContainer.innerHTML = `
@@ -56,6 +60,7 @@ function setupQuestMenu() {
   });
 
   sideQuest.forEach((quest) => {
+    console.log(quest);
     const questDiv = document.createElement("div");
     questDiv.classList = "quest";
     questDiv.innerHTML = `
@@ -64,6 +69,8 @@ function setupQuestMenu() {
             </h3>
         `;
     sideQuestContainer.appendChild(questDiv);
+
+    if (quest.available) questDiv.classList.add("available");
 
     questDiv.addEventListener("click", () => {
       console.log(challengers.Villagers[4].win);
@@ -80,7 +87,7 @@ function setupQuestMenu() {
         </div>
             <p>${quest.reward}</p>
         `;
-      questValidation(quest.reward);
+      questValidation(quest);
     });
   });
 
@@ -100,6 +107,7 @@ function setupQuestMenu() {
     sideQuestTitle.classList.toggle("selected-side-quest");
     mainQuestContainer.classList.toggle("open-main");
     sideQuestContainer.classList.toggle("open-side");
+    updateQuestAvailability(quests);
   });
 
   sideQuestTitle.addEventListener("click", function () {
@@ -107,43 +115,115 @@ function setupQuestMenu() {
     mainQuestTitle.classList.toggle("selected-main-quest");
     sideQuestContainer.classList.toggle("open-side");
     mainQuestContainer.classList.toggle("open-main");
+    updateQuestAvailability(quests);
+  });
+}
+
+function updateQuestAvailability(quests) {
+  quests.forEach((quest) => {
+    if (!quest.lock && quest.condition()) {
+      quest.available = true;
+    } else {
+      quest.available = false;
+    }
   });
 }
 
 function questValidation(quest) {
-  switch (quest.reward) {
-    case "blue_card":
-      console.log(quest.reward, quest.condition);
-      break;
-    case "red_card":
-      console.log(quest.reward);
-      break;
-    case "green_card":
-      console.log(quest.reward);
-      break;
-    case "yellow_card":
-      console.log(quest.reward);
-      break;
-    case "purple_card":
-      console.log(quest.reward);
-      break;
-    case "level":
-      console.log(quest.reward);
-      break;
-    case "400":
-      console.log(quest.reward);
-      break;
-    case "800":
-      console.log(quest.reward);
-      break;
-    case "1200":
-      console.log(quest.reward);
-      break;
-    case "1600":
-      console.log(quest.reward);
-      break;
-    case "2000":
-      console.log(quest.reward);
-      break;
+  if (quest.condition() && !quest.lock) {
+    switch (quest.reward) {
+      case "blue_card":
+        console.log(quest.reward, quest.condition());
+        break;
+      case "red_card":
+        console.log(quest.reward, quest.condition());
+        break;
+      case "green_card":
+        console.log(quest.reward, quest.condition());
+        break;
+      case "yellow_card":
+        console.log(quest.reward, quest.condition());
+        break;
+      case "purple_card":
+        console.log(quest.reward, quest.condition());
+        break;
+      case "level":
+        teamModaleQuest(quest);
+        console.log(quest.reward, quest.condition());
+        break;
+      case "400":
+        gold += quest.reward;
+        goldText.innerText = `${gold}`;
+        console.log(quest.reward, quest.condition());
+        break;
+      case "800":
+        gold += quest.reward;
+        goldText.innerText = `${gold}`;
+        console.log(quest.reward, quest.condition());
+        break;
+      case "1200":
+        gold += quest.reward;
+        goldText.innerText = `${gold}`;
+        console.log(quest.reward, quest.condition());
+        break;
+      case "1600":
+        gold += quest.reward;
+        goldText.innerText = `${gold}`;
+        console.log(quest.reward, quest.condition());
+        break;
+      case "2000":
+        gold += quest.reward;
+        goldText.innerText = `${gold}`;
+        console.log(quest.reward, quest.condition());
+        break;
+    }
+    quest.lock = true;
   }
+  updateQuestAvailability(quests);
+}
+
+function teamModaleQuest(item) {
+  const questMenu = document.getElementById("quest-menu");
+
+  const overlay = document.createElement("div");
+  overlay.className = "team-modale-overlay";
+
+  const modaleContent = document.createElement("div");
+  modaleContent.classList = "team-modale";
+
+  const teamContainer = document.createElement("div");
+
+  const modaleTitle = document.createElement("h3");
+  modaleTitle.innerText = "Select your Mythic";
+
+  teamContainer.innerHTML = menuCat.team;
+
+  modaleContent.appendChild(modaleTitle);
+  modaleContent.appendChild(teamContainer);
+
+  questMenu.appendChild(modaleContent);
+  questMenu.appendChild(overlay);
+
+  displayTeam();
+
+  teamContainer.addEventListener("click", function (event) {
+    let target = event.target;
+
+    if (target.classList.contains("plus")) {
+      let monsterId = target.getAttribute("data-monster");
+      let monster = team[monsterId];
+
+      if (monster) {
+        selectItem(item, monster);
+        displayTeam(); // Update UI to reflect change
+        modaleContent.style.display = "none";
+        overlay.style.display = "none";
+      }
+    }
+  });
+
+  overlay.addEventListener("click", function () {
+    modaleContent.style.display = "none";
+    this.style.display = "none";
+  });
 }

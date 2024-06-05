@@ -936,7 +936,7 @@ audio{
     }
 }
 
-/*-----------------test----------------*/
+/*-----------------Menu----------------*/
 
 .menu-test {
     display: none;
@@ -1475,6 +1475,11 @@ audio{
     width: 100%;
     height: fit-content;
     margin: 0 3rem;
+}
+
+.available{
+    color: #ff9600;
+    animation: glow-yellow 2s linear infinite;
 }
 
 
