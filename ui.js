@@ -15,7 +15,10 @@ const line1 = document.querySelector(".line-1");
 const line2 = document.querySelector(".line-2");
 const line3 = document.querySelector(".line-3");
 
-const audio = document.getElementById("audio");
+const sound = new SoundManager();
+sound.loadSound(6);
+
+const audio = document.querySelector(".audio");
 const audioPara = document.querySelector(".audio-parameter");
 
 const goldUI = document.querySelector(".gold-container");
@@ -27,6 +30,8 @@ let remainingPoints = 0;
 
 const team = [];
 let currentMonster = team[0];
+
+
 
 function populateSelect() {
     const select = document.getElementById('monsterSprite');
