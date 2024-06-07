@@ -12,6 +12,8 @@ function initializeForm() {
     const mode = document.getElementById("formMode").value;
     if (mode === "create" && team.length < 4) {
       createMonster();
+      sound.loadSound(2);
+      sound.play();
     } else if (mode === "update") {
       updateMonster();
     }
@@ -112,7 +114,6 @@ function createMonster() {
   displayTeam();
   console.log(currentMonster);
 
-  alert(`${currentMonster.name} created succesfully`);
 }
 
 function resetFormAndStats() {
@@ -144,11 +145,10 @@ function updateMonster() {
   currentMonster.currentHp = currentMonster.life;
   currentMonster.maxHp = currentMonster.life;
 
-  alert(`${currentMonster.name} updated successfully!`);
   document.getElementById("formMode").value = "create";
   currentMonster.levelStats = { ...initialStats };
   displayTeam();
-  setupArena(currentPNJ, indexPNJ);
+  if(loadArena) setupArena(currentPNJ, indexPNJ);
   document.getElementById("formMode").value = "create";
   document.querySelector(".input-sprite-container").style.display = "flex";
   document.querySelector(".role-container").style.display = "flex"
@@ -205,6 +205,8 @@ window.onload = initializeForm;
 initializeStats();
 
 function levelUp(monster){
+  sound.loadSound(1);
+  sound.play();
   formTitle.innerText = "Level UP"
   modal.style.display = "flex";
   overlay.style.display = "block";
@@ -225,9 +227,12 @@ function levelUp(monster){
 function getRole(){
   document.addEventListener("click", function(event){
     let target = event.target;
+    
 
     if (target.classList.contains('role')){
         let role = target.getAttribute('data-role');
+        sound.loadSound(13);
+        sound.play();
         switch (role) {
           case "Attack":
             document.getElementById("monsterHp").value = 2;

@@ -42,6 +42,8 @@ function setupQuestMenu() {
     if (quest.available) questDiv.classList.add("available");
 
     questDiv.addEventListener("click", () => {
+        sound.loadSound(14);
+        sound.play();
       descContainer.innerHTML = `
         <h3>${quest.type} quest</h3>
         <div class="divider">
@@ -73,7 +75,8 @@ function setupQuestMenu() {
     if (quest.available) questDiv.classList.add("available");
 
     questDiv.addEventListener("click", () => {
-      console.log(challengers.Villagers[4].win);
+        sound.loadSound(14);
+        sound.play();
       descContainer.innerHTML = `
         <h3>${quest.type} quest</h3>
         <div class="divider">
@@ -103,6 +106,8 @@ function setupQuestMenu() {
   questContainer.appendChild(sideQuestContainer);
 
   mainQuestTitle.addEventListener("click", function () {
+    sound.loadSound(7);
+    sound.play();
     this.classList.toggle("selected-main-quest");
     sideQuestTitle.classList.toggle("selected-side-quest");
     mainQuestContainer.classList.toggle("open-main");
@@ -111,6 +116,8 @@ function setupQuestMenu() {
   });
 
   sideQuestTitle.addEventListener("click", function () {
+    sound.loadSound(7);
+    sound.play();
     this.classList.toggle("selected-side-quest");
     mainQuestTitle.classList.toggle("selected-main-quest");
     sideQuestContainer.classList.toggle("open-side");
@@ -177,6 +184,8 @@ function questValidation(quest) {
         console.log(quest.reward, quest.condition());
         break;
     }
+    sound.loadSound(5);
+    sound.play();
     quest.lock = true;
   }
   updateQuestAvailability(quests);
@@ -225,5 +234,7 @@ function teamModaleQuest(item) {
   overlay.addEventListener("click", function () {
     modaleContent.style.display = "none";
     this.style.display = "none";
+    sound.loadSound(9);
+    sound.play();
   });
 }

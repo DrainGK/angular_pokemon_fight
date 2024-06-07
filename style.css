@@ -802,6 +802,7 @@ audio{
     z-index: 1;
     
     animation: pan 30s linear infinite;
+    ;
 }
 
 .monster-ui > div:nth-child(1){
@@ -1404,6 +1405,7 @@ audio{
     font-size: 1rem;
     color: white;
     border-radius: 50px;
+    border: 1px solid transparent;
 
     background-color: #00262e;
     background-image: url(/img/wave-white.svg);
@@ -1420,6 +1422,7 @@ audio{
 
 .quest:hover{
     cursor: pointer;
+    border: 1px solid white;
 }
 
 .quest-desc-container{
@@ -1482,5 +1485,12 @@ audio{
     animation: glow-yellow 2s linear infinite;
 }
 
+/*-------------health animation-----------*/
+
+@keyframes recover {
+    to {
+        width: 100% ;
+    }
+}
 
 

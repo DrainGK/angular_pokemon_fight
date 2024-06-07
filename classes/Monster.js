@@ -20,7 +20,8 @@ class Monster {
 
   fight(opponent) {
     if (!this.rest && opponent.isDodge === false && this.currentHp > 0){
-      
+      sound.loadSound(4);
+      sound.play();
       if (Math.random() < 0.05 - this.luck * 0.005) {
         console.log(`${this.name}'s attack missed`);
         return 0;
@@ -80,6 +81,8 @@ class Monster {
 
   die() {
     if (this.currentHp <= 0) {
+      sound.loadSound(17);
+      sound.play();
       console.log(`${this.name} is KO`);
       currentMonsterId++;
       if(team[currentMonsterId]) currentMonster = team[currentMonsterId];
