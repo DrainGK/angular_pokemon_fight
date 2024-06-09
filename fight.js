@@ -62,6 +62,9 @@ function setupChallengers() {
       // Attach click event listener if all monsters are alive
       if (!pnj.lock && !pnj.win) {
         icon.addEventListener("click", () => {
+          if (team.length < 1) {
+            snackBarMessage("Your team is empty");
+          }
           sound.loadSound(7);
           sound.play();
           indexPNJ = 0;
@@ -113,7 +116,7 @@ function setupGlobalListeners(element) {
 }
 
 function setupArena(pnj, message) {
-    loadArena = true;
+  loadArena = true;
   currentPNJ = pnj;
   const monster = pnj.team[indexPNJ];
   const arena = `

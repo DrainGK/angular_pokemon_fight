@@ -1485,6 +1485,127 @@ audio{
     animation: glow-yellow 2s linear infinite;
 }
 
+/*---------------snackbar--------------*/
+
+#screen{
+    position: relative;
+}
+
+.snackbar{
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    width: 250px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem;
+
+    background-color: #00262e;
+    box-shadow: 0px 0px 10px #00262e15;
+
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+
+    animation: snackbar 1s ease-in-out;
+    overflow: hidden;
+
+    z-index: 20;
+}
+
+.snackbar > p{
+    animation: snackbar-text 0.5s ease-in-out;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@keyframes snackbar {
+    0%{ 
+        height: 40px;
+        width: 40px;
+        bottom: -20%;
+    }
+    50%{
+        height: 40px;
+        width: 125px;
+        bottom: 2%;
+    } 75%{
+        height: 40px;
+        width: 10%;
+        bottom: 2%;
+      }  100%{
+        height: 40px;
+        width: 250px;
+    }
+}
+
+@keyframes snackbar-close {
+    0%{
+        bottom: 2%;
+    } 100%{
+        bottom: -20%;
+    }
+}
+
+@keyframes snackbar-text{
+    0%{
+        display: none;
+    }
+    50%{
+        display: none;
+    }
+    100%{
+        display: block;
+    }
+}
+
+/*---------overlay transition-------------*/
+
+.overlay-transition {
+    position: fixed;
+    z-index: 25;
+
+    width: 100vw;
+    height: 0vh; /* Commence à 0vh */
+    bottom: 0; 
+    /* Ancre au bas de l'écran */
+
+    background-color: #00262e;
+    transform: translateX(-50%, -50%);
+
+    animation:overlay-transition 2s ease-in-out forwards; /* Ajout de 'forwards' pour garder la dernière étape */
+}
+
+@keyframes overlay-transition{
+    0%{
+        height: 25vh;
+        bottom: 0; 
+    }
+  
+    20%{
+        height: 200vh;
+        bottom: 0; 
+    }
+    
+    50%{
+        height: 100vh;
+        top: 0;
+    }
+    75%{
+        height: 50vh;
+        top: 0;
+    }
+    100%{
+        height: 0vh;
+        top: 0;
+    }
+}
+
+
 /*-------------health animation-----------*/
 
 @keyframes recover {

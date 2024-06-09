@@ -53,13 +53,14 @@ function displayShopItems() {
         sound.loadSound(8);
         sound.play();
         if (gold < item.cost) {
-          alert("not enough gold");
+          // alert("not enough gold")
+          snackBarMessage("not enough gold");
         } else {
           teamModale(item);
         }
       } else {
-        descContainer.style.color = "#00262e";
-        descContainer.innerText = "You do not have any Mythics";
+        // descContainer.innerText = "You do not have any Mythics";
+        snackBarMessage("You do not have any Mythics");
       }
     });
 

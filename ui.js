@@ -14,6 +14,7 @@ const iconTest = document.querySelector(".icon-test");
 const line1 = document.querySelector(".line-1");
 const line2 = document.querySelector(".line-2");
 const line3 = document.querySelector(".line-3");
+const panel = document.querySelector(".overlay-transition");
 
 const sound = new SoundManager();
 sound.loadMusic(6);
@@ -71,24 +72,30 @@ iconTest.addEventListener("click", function () {
 start.addEventListener("click", function () {
   sound.loadSound(0);
   sound.play();
-  menu.style.display = "none";
-  nav.style.display = "flex";
-  iconTest.style.display = "flex";
-  const polygon = document.querySelector("#polygon");
-  polygon.style.display = "none";
-  const button = document.querySelector(".button-container");
-  button.style.display = "none";
+  transition();
+  setTimeout(() => {
+    menu.style.display = "none";
+    nav.style.display = "flex";
+    iconTest.style.display = "flex";
+    const polygon = document.querySelector("#polygon");
+    polygon.style.display = "none";
+    const button = document.querySelector(".button-container");
+    button.style.display = "none";
+  }, 1000);
 });
 
 monsterButton.addEventListener("click", function () {
   sound.loadSound(0);
   sound.play();
-  toggleMenu();
-  getRole();
-  screen.innerHTML = menuCat.team;
-  attachEventListeners();
-  displayTeam();
-  goldUI.style.display = "none";
+  transition();
+  setTimeout(() => {
+    toggleMenu();
+    getRole();
+    screen.innerHTML = menuCat.team;
+    attachEventListeners();
+    displayTeam();
+    goldUI.style.display = "none";
+  }, 1000);
 });
 
 overlay.addEventListener("click", function () {
@@ -101,28 +108,38 @@ overlay.addEventListener("click", function () {
 fightButton.addEventListener("click", function () {
   sound.loadSound(0);
   sound.play();
-  toggleMenu();
-  screen.innerHTML = menuCat.fight;
-  setupChallengers();
-  goldUI.style.display = "none";
+  transition();
+  setTimeout(() => {
+    toggleMenu();
+    screen.innerHTML = menuCat.fight;
+    setupChallengers();
+    goldUI.style.display = "none";
+  }, 1000);
 });
 
 shopButton.addEventListener("click", function () {
   loadArena = false;
   sound.loadSound(0);
   sound.play();
-  goldUI.style.display = "flex";
-  goldUI.classList.remove("gold-open");
-  toggleMenu();
-  screen.innerHTML = menuCat.shop;
-  displayShopItems();
+  transition();
+  setTimeout(() => {
+    goldUI.style.display = "flex";
+    goldUI.classList.remove("gold-open");
+    toggleMenu();
+    screen.innerHTML = menuCat.shop;
+    displayShopItems();
+  }, 1000);
 });
 questButton.addEventListener("click", function () {
   sound.loadSound(0);
   sound.play();
-  screen.innerHTML = menuCat.quest;
-  toggleMenu();
-  setupQuestMenu();
+  transition();
+  setTimeout(() => {
+    screen.innerHTML = menuCat.quest;
+    toggleMenu();
+    setupQuestMenu();
+    goldUI.style.display = "none";
+  }, 1000);
 });
 
 function attachEventListeners() {
@@ -189,3 +206,35 @@ function toggleMenu() {
 audioPara.addEventListener("click", function () {
   audio.classList.toggle("audio-toggle");
 });
+
+function snackBarMessage(message) {
+  const snackBar = document.createElement("div");
+  snackBar.classList = "snackbar";
+  const text = document.createElement("p");
+  text.innerText = message;
+
+  snackBar.appendChild(text);
+  screen.appendChild(snackBar);
+
+  setTimeout(() => {
+    sound.loadSound(9);
+    sound.play();
+    // Add the closing animation directly using style
+    snackBar.style.animation = "snackbar-close 0.5s ease-in-out";
+
+    // Remove the element after the animation ends
+    snackBar.addEventListener("animationend", () => {
+      snackBar.remove();
+    });
+  }, 2500); // Adjust the delay as needed before closing
+}
+
+function transition() {
+  const panel = document.createElement("div");
+  panel.classList.add("overlay-transition");
+  document.body.appendChild(panel); // Utiliser document.body au lieu de screen
+
+  panel.addEventListener("animationend", () => {
+    panel.remove();
+  });
+}
