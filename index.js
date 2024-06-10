@@ -238,8 +238,6 @@ function levelUp(monster) {
   remainingPoints = monster.points;
   updatePointsDisplay();
   switchToUpdateMode(monster);
-  console.log(monster);
-  console.log(team);
 }
 
 function getRole() {

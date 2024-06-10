@@ -39,7 +39,7 @@ class Monster {
           opponent.currentHp -= damage;  // Reduce opponent's life
           console.log(`Remaining life of ${opponent.name}: ${opponent.currentHp}`);
           return damage;  // Returning damage for information, not necessary for functionality
-    } else {
+    } else if(this.rest) {
       console.log(`${this.name} is too tired to perform an attack`);
       this.rest = false; // Reset rest status, but consider the gameplay logic
     }

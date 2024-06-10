@@ -163,7 +163,7 @@ function selectItem(item, monster) {
       console.log(monster.levelStats);
       break;
     case "level":
-      console.log("you chose: ", item.name);
+      console.log("you chose: ", item.name, monster.name);
       levelUp(monster);
       break;
     default:

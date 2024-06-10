@@ -204,7 +204,24 @@ function toggleMenu() {
 }
 
 audioPara.addEventListener("click", function () {
-  audio.classList.toggle("audio-toggle");
+  const items = document.querySelectorAll(".audio-item");
+  if(this.classList.contains("audio-open")){
+    this.classList.remove("audio-open");
+    this.classList.add("audio-close");
+    items.forEach((item) => {
+      item.classList.remove("audio-item-close");
+    })
+    
+    } else {
+      
+      this.classList.add("audio-open");
+      this.classList.remove("audio-close");
+      items.forEach((item) => {
+        item.classList.add("audio-item-close");
+      })
+
+    
+  }
 });
 
 function snackBarMessage(message) {
