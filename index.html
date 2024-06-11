@@ -25,29 +25,44 @@
             <p class="quest-button">quest</p>
             <div class="parameters">
                 <div class="audio-parameter">
-                    <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
 
                         <div class="music-icon-container">
                             <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5149 1.12128C19.7772 0.805704 21 1.76042 21 3.06156V5.93846C21 6.85619 20.3754 7.65616 19.4851 7.87874L13 9.50001V18C13 20.7614 10.7614 23 8 23C5.23858 23 3 20.7614 3 18C3 15.2386 5.23858 13 8 13C9.12561 13 10.1643 13.372 11 13.9996V4.56156C11 3.64383 11.6246 2.84386 12.5149 2.62128L18.5149 1.12128ZM17.7575 3.31064C18.3886 3.15286 19 3.63022 19 4.28079V5.21923C19 5.6781 18.6877 6.07808 18.2425 6.18938L14.2425 7.18938C13.6114 7.34716 13 6.8698 13 6.21923V5.28079C13 4.82192 13.3123 4.42194 13.7575 4.31064L17.7575 3.31064ZM5.00786 18C5.00786 19.6525 6.34749 20.9921 8 20.9921C9.65251 20.9921 10.9921 19.6525 10.9921 18C10.9921 16.3475 9.65251 15.0079 8 15.0079C6.34749 15.0079 5.00786 16.3475 5.00786 18Z" fill="#ffffff"></path> </g></svg>
                         </div>
-                        <h3 class="audio-item">musique</h3>
+                        <h3 class="audio-item">music</h3>
                     </div>
-                    <input class="audio-item" type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
+                    <input id="music" class="audio-range" type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.2">
 
-                    <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                        <div class="music-icon-container">
-                            <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5149 1.12128C19.7772 0.805704 21 1.76042 21 3.06156V5.93846C21 6.85619 20.3754 7.65616 19.4851 7.87874L13 9.50001V18C13 20.7614 10.7614 23 8 23C5.23858 23 3 20.7614 3 18C3 15.2386 5.23858 13 8 13C9.12561 13 10.1643 13.372 11 13.9996V4.56156C11 3.64383 11.6246 2.84386 12.5149 2.62128L18.5149 1.12128ZM17.7575 3.31064C18.3886 3.15286 19 3.63022 19 4.28079V5.21923C19 5.6781 18.6877 6.07808 18.2425 6.18938L14.2425 7.18938C13.6114 7.34716 13 6.8698 13 6.21923V5.28079C13 4.82192 13.3123 4.42194 13.7575 4.31064L17.7575 3.31064ZM5.00786 18C5.00786 19.6525 6.34749 20.9921 8 20.9921C9.65251 20.9921 10.9921 19.6525 10.9921 18C10.9921 16.3475 9.65251 15.0079 8 15.0079C6.34749 15.0079 5.00786 16.3475 5.00786 18Z" fill="#ffffff"></path> </g></svg>
+                        <div class="music-icon-container audio-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 11V13M6 8V16M9 10V14M12 7V17M15 4V20M18 9V15M21 11V13" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                         </div>
-                        <h3 class="audio-item">musique</h3>
+                        <h3 class="audio-item">sound</h3>
                     </div>
-                    <input class="audio-item" type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
+                    <input id="sound" class="audio-range" type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
 
                     
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="loader" id="waveContainer">
+        <svg id="wave" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 38.05">
+          <title>Audio Wave</title>
+          <path id="Line_1" data-name="Line 1" d="M0.91,15L0.78,15A1,1,0,0,0,0,16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H0.91Z"/>
+          <path id="Line_2" data-name="Line 2" d="M6.91,9L6.78,9A1,1,0,0,0,6,10V28a1,1,0,1,0,2,0s0,0,0,0V10A1,1,0,0,0,7,9H6.91Z"/>
+          <path id="Line_3" data-name="Line 3" d="M12.91,0L12.78,0A1,1,0,0,0,12,1V37a1,1,0,1,0,2,0s0,0,0,0V1a1,1,0,0,0-1-1H12.91Z"/>
+          <path id="Line_4" data-name="Line 4" d="M18.91,10l-0.12,0A1,1,0,0,0,18,11V27a1,1,0,1,0,2,0s0,0,0,0V11a1,1,0,0,0-1-1H18.91Z"/>
+          <path id="Line_5" data-name="Line 5" d="M24.91,15l-0.12,0A1,1,0,0,0,24,16v6a1,1,0,0,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H24.91Z"/>
+          <path id="Line_6" data-name="Line 6" d="M30.91,10l-0.12,0A1,1,0,0,0,30,11V27a1,1,0,1,0,2,0s0,0,0,0V11a1,1,0,0,0-1-1H30.91Z"/>
+          <path id="Line_7" data-name="Line 7" d="M36.91,0L36.78,0A1,1,0,0,0,36,1V37a1,1,0,1,0,2,0s0,0,0,0V1a1,1,0,0,0-1-1H36.91Z"/>
+          <path id="Line_8" data-name="Line 8" d="M42.91,9L42.78,9A1,1,0,0,0,42,10V28a1,1,0,1,0,2,0s0,0,0,0V10a1,1,0,0,0-1-1H42.91Z"/>
+          <path id="Line_9" data-name="Line 9" d="M48.91,15l-0.12,0A1,1,0,0,0,48,16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H48.91Z"/>
+        </svg>
+      </div>
 
     <span class="gold-container" style="display: none;">
         <img src="./img/coin.gif" alt="coin" height="25" width="25">

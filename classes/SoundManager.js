@@ -29,7 +29,8 @@ class SoundManager {
         "sound/heal.mp3",
         "sound/attack.mp3",
         "sound/game_over.mp3",
-    ];
+        ];
+    this.isPaused = false;
     this.gameSound = null; // It's not clear what this is for, initializing for clarity
     this.sound = document.createElement("audio");
     this.sound.setAttribute("preload", "auto");
@@ -57,16 +58,19 @@ class SoundManager {
   }
 
   play() {
+    this.isPaused = false;
     this.sound
       .play()
       .catch((error) => console.error("Error playing sound:", error));
   }
 
   pause() {
+    this.isPaused = true;
     this.sound.pause();
   }
 
   stop() {
+    this.isPaused = true;
     this.sound.pause();
     this.sound.currentTime = 0;
   }
