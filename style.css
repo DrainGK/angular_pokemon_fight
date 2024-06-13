@@ -233,6 +233,14 @@ body{
     height: 100vh;
     width: 100vw;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-monster-content{
+    height: fit-content;
+    width: fit-content;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
@@ -1114,13 +1122,13 @@ audio{
 .next {
     top: 50%;
     right: 2%;
-    transform: translateY(-50%);
+    transform: translateY(-30%);
 }
 
 .prev {
     top: 50%;
     left: 2%;
-    transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-30%) rotate(180deg);
 }
 
 #shop > h2 {
@@ -1572,7 +1580,7 @@ audio{
     bottom: 0; 
     /* Ancre au bas de l'écran */
 
-    background-color: #00262e;
+    background-color: #ff9600;
     transform: translateX(-50%, -50%);
 
     animation:overlay-transition 2s ease-in-out forwards; /* Ajout de 'forwards' pour garder la dernière étape */
@@ -1714,10 +1722,10 @@ audio{
 
 .loader {
     position: absolute;
-    top: 2%;
+    bottom: 2%;
     right: 2%;
     cursor: pointer;
-    z-index: 20;
+    z-index: 30;
 
     display: flex;
     align-items: center;
@@ -1798,8 +1806,5 @@ audio{
     animation: none;
   }
   
-  .play-once #wave path {
-    animation: pulse 1s;
-  }
 
 

@@ -1,10 +1,12 @@
 const menuCat = {
   team: `
         <div class="create-monster-container">
+          <div class="create-monster-content">
             <div class="plus" data-monster="0"><img src="/img/plus.svg" alt="add monster"></div>
             <div class="plus" data-monster="1"><img src="/img/plus.svg" alt="add monster"></div>
             <div class="plus" data-monster="2"><img src="/img/plus.svg" alt="add monster"></div>
             <div class="plus" data-monster="3"><img src="/img/plus.svg" alt="add monster"></div>
+          </div>
         </div>
         `,
   fight: `

@@ -188,6 +188,11 @@ function teamModale(item) {
 
   teamContainer.innerHTML = menuCat.team;
 
+  const createMonsterContainer = teamContainer.querySelector(".create-monster-container");
+  if (createMonsterContainer) {
+    createMonsterContainer.className = "";
+  }
+
   modaleContent.appendChild(modaleTitle);
   modaleContent.appendChild(teamContainer);
 

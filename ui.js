@@ -325,3 +325,4 @@ function playWave() {
     path.setAttribute('d', originalPaths[index]); // Restore the original 'd' attributes
   });
 }
+

@@ -68,7 +68,7 @@ function setupChallengers() {
           sound.loadSound(7);
           sound.play();
           indexPNJ = 0;
-          setupArena(pnj);
+          setupArena(pnj, indexPNJ, "Choose your action to start the fight!");
           goldUI.classList.remove("gold-open");
           console.log(`Clicked on: ${pnj.name} from ${groupName}`);
         });
@@ -115,7 +115,7 @@ function setupGlobalListeners(element) {
   });
 }
 
-function setupArena(pnj, message) {
+function setupArena(pnj,indexPNJ, message) {
   loadArena = true;
   currentPNJ = pnj;
   const monster = pnj.team[indexPNJ];
@@ -195,7 +195,9 @@ function setupArena(pnj, message) {
 
 function updateArena(message) {
   const fightInfo = document.querySelector(".fight-info");
-  fightInfo.innerText = message;
+  fightInfo.innerHTML = `
+    <p id="dialog-text">${message}</p>
+  `;
 }
 
 function getHealthColor(currentHp, maxHp) {
@@ -231,10 +233,6 @@ function clearElementContents(element) {
 
 function allKO() {
   const challengersIcon = document.querySelector(".challengers-icon");
-  const messages = [
-    { text: `${text.defeat} ${currentPNJ.name}!`, delay: 3000 },
-    { text: `${text.gold} ${gold} gold.`, delay: 5000 },
-  ];
 
   if (
     currentPNJ &&
@@ -244,8 +242,7 @@ function allKO() {
     goldText.innerText = `${gold}`;
     clearElementContents(screen); // Clearing the content explicitly
     screen.innerHTML = menuCat.fight;
-    setupArena(currentPNJ, messages[0].text, indexPNJ);
-    // displayMessagesSequentially(messages);
+    setupArena(currentPNJ, indexPNJ, "");
 
     winScreen();
     unlockNextPNJ(); // Unlock the next PNJ
@@ -281,22 +278,21 @@ function unlockNextPNJ() {
 function checkOpponentKO() {
   opponent = currentPNJ.team[indexPNJ];
   if (opponent.currentHp <= 0 && indexPNJ <= 2) {
-    if (opponent.level >= currentMonster.level) {
+    if (opponent.level >= currentMonster.level && currentMonster.level< 10) {
       levelUp(currentMonster);
     }
     indexPNJ++;
   } else if (opponent.currentHp <= 0 && indexPNJ === 3) {
-    if (opponent.level >= currentMonster.level) {
+    if (opponent.level >= currentMonster.level && currentMonster.level< 10) {
       levelUp(currentMonster);
     }
   }
-  setupArena(currentPNJ, indexPNJ);
+  setupArena(currentPNJ, indexPNJ, "");
   allKO();
 }
 
 function attack(pnj, index) {
   opponent = pnj.team[index];
-  const message1 = `Attacking: ${opponent.name} with ${currentMonster.name}`;
 
   if (opponent.luck > currentMonster.luck) {
     opponentMove(opponent, currentMonster);
@@ -312,10 +308,11 @@ function attack(pnj, index) {
     }, 1000); // 2000 milliseconds delay (2 seconds)
   }
 }
+
 function afterFightActions() {
   checkOpponentKO();
   currentMonster.die();
-  setupArena(currentPNJ, indexPNJ);
+  setupArena(currentPNJ, indexPNJ,"");
 }
 
 function superAttackMove(pnj, index) {
@@ -331,7 +328,7 @@ function superAttackMove(pnj, index) {
   }
   checkOpponentKO();
   currentMonster.die();
-  setupArena(currentPNJ, indexPNJ);
+  setupArena(currentPNJ, indexPNJ, "");
 }
 
 function dodgeMove() {
@@ -343,7 +340,7 @@ function dodgeMove() {
     opponentMove(opponent, currentMonster);
   }
   currentMonster.die();
-  setupArena(currentPNJ, indexPNJ);
+  setupArena(currentPNJ, indexPNJ, "");
 }
 
 function opponentMove(monster, opponent) {
@@ -366,12 +363,12 @@ function opponentMove(monster, opponent) {
       default:
         console.log("No valid action was performed");
     }
-    setupArena(currentPNJ, indexPNJ);
+    setupArena(currentPNJ, indexPNJ, "");
   }
 }
 
 function teamMenu() {
   opponentMove(opponent, currentMonster);
   currentMonster.die();
-  setupArena(currentPNJ, indexPNJ);
+  setupArena(currentPNJ, indexPNJ, "");
 }

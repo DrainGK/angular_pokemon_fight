@@ -20,41 +20,44 @@ class Monster {
 
   fight(opponent) {
     if (!this.rest && opponent.isDodge === false && this.currentHp > 0){
-      sound.loadSound(4);
-      sound.play();
-      if (Math.random() < 0.05 - this.luck * 0.005) {
-        console.log(`${this.name}'s attack missed`);
-        return 0;
-      }
-      let damage = this.attack - opponent.defense;
-      damage = damage < 0 ? 0 : damage;
-  
-      if (Math.random() < this.luck * 0.01) {
-        damage *= 1.5;
-        console.log("Critical Hit!");
-      }
-  
-          console.log(`Damage dealt by ${this.name} to ${opponent.name}: ${damage}`);
-          if(damage === 0) damage = 0.5;
-          opponent.currentHp -= damage;  // Reduce opponent's life
-          console.log(`Remaining life of ${opponent.name}: ${opponent.currentHp}`);
-          return damage;  // Returning damage for information, not necessary for functionality
+        sound.loadSound(4);
+        sound.play();
+
+        if (Math.random() < 0.05 - this.luck * 0.005) {
+            updateArena(`${this.name}'s attack missed`);
+            return 0;
+        }
+
+        let damage = this.attack - opponent.defense;
+        damage = damage < 0 ? 0 : damage;
+
+        if (Math.random() < this.luck * 0.01) {
+            damage *= 1.5;
+            setTimeout(() => updateArena("Critical Hit!"), 100);
+        }
+
+        setTimeout(() => updateArena(`Damage dealt by ${this.name} to ${opponent.name}: ${damage}`), 500);
+        if(damage === 0) damage = 0.5;
+        opponent.currentHp -= damage;  // Reduce opponent's life
+
+        setTimeout(() => updateArena(`Remaining life of ${opponent.name}: ${opponent.currentHp}`), 1000);
+        return damage;  // Returning damage for information, not necessary for functionality
     } else if(this.rest) {
-      console.log(`${this.name} is too tired to perform an attack`);
-      this.rest = false; // Reset rest status, but consider the gameplay logic
+        setTimeout(() => updateArena(`${this.name} is too tired to perform an attack`), 100);
+        this.rest = false; // Reset rest status, but consider the gameplay logic
     }
-  }
+}
 
   superAttack(opponent) {
     if (!this.rest && opponent.isDodge === false && this.currentHp > 0) {
       // Correct use of boolean check
       this.fight(opponent);
-      console.log(`${this.name} is attacking again`);
+      updateArena(`${this.name} is attacking again`);
       this.fight(opponent);
-      console.log(`${this.name} is tired`);
+      updateArena(`${this.name} is tired`);
       this.rest = true; // Monster needs to rest after a super attack
     } else {
-      console.log(`${this.name} is too tired to perform a super attack`);
+      updateArena(`${this.name} is too tired to perform a super attack`);
       this.rest = false; // Reset rest status, but consider the gameplay logic
     }
   }
