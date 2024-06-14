@@ -42,8 +42,8 @@ function setupQuestMenu() {
     if (quest.available) questDiv.classList.add("available");
 
     questDiv.addEventListener("click", () => {
-        sound.loadSound(14);
-        sound.play();
+      sound.loadSound(14);
+      sound.play();
       descContainer.innerHTML = `
         <h3>${quest.type} quest</h3>
         <div class="divider">
@@ -75,8 +75,8 @@ function setupQuestMenu() {
     if (quest.available) questDiv.classList.add("available");
 
     questDiv.addEventListener("click", () => {
-        sound.loadSound(14);
-        sound.play();
+      sound.loadSound(14);
+      sound.play();
       descContainer.innerHTML = `
         <h3>${quest.type} quest</h3>
         <div class="divider">
@@ -218,8 +218,10 @@ function teamModaleQuest(item) {
   teamContainer.addEventListener("click", function (event) {
     let target = event.target;
 
-    if (target.classList.contains("plus")) {
-      let monsterId = target.getAttribute("data-monster");
+    let button = target.closest(".plus");
+
+    if (button) {
+      let monsterId = button.getAttribute("data-monster");
       let monster = team[monsterId];
 
       if (monster) {

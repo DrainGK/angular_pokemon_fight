@@ -206,8 +206,10 @@ function teamModale(item) {
   teamContainer.addEventListener("click", function (event) {
     let target = event.target;
 
-    if (target.classList.contains("plus")) {
-      let monsterId = target.getAttribute("data-monster");
+    let button = target.closest('.plus');
+
+    if (button) {
+      let monsterId = button.getAttribute("data-monster");
       let monster = team[monsterId];
 
       if (monster && gold >= item.cost) {

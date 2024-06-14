@@ -158,29 +158,33 @@ questButton.addEventListener("click", function () {
 function attachEventListeners() {
   const teamMenu = document.querySelector(".create-monster-container");
   teamMenu.addEventListener("click", function (event) {
-    let target = event.target;
-    sound.loadSound(3);
-    sound.play();
-    if (target.classList.contains("plus")) {
-      let monsterId = target.getAttribute("data-monster");
-      let monster = team[monsterId];
+      let target = event.target;
 
-      if (monster) {
-        // Only swap if the monster is not already the first one
-        if (monsterId !== "0") {
-          swapMonster(team, monsterId);
-          displayTeam(); // Update UI to reflect changes
-        }
-      } else {
-        // If there is no monster, show creation modal
-        modal.style.display = "flex";
-        overlay.style.display = "block";
-        formTitle.innerText = "Create your monster";
-        resetFormAndStats();
+      // Find the closest parent with class "plus" if target doesn't have it
+      let button = target.closest('.plus');
+
+      if (button) {
+          sound.loadSound(3);
+          sound.play();
+
+          let monsterId = button.getAttribute("data-monster");
+          let monster = team[monsterId];
+
+          if (monster) {
+              if (monsterId !== "0") {
+                  swapMonster(team, monsterId);
+                  displayTeam();
+              }
+          } else {
+              modal.style.display = "flex";
+              overlay.style.display = "block";
+              formTitle.innerText = "Create your monster";
+              resetFormAndStats();
+          }
       }
-    }
   });
 }
+
 
 function swapMonster(team, currentMonsterId) {
   let currentMonsterIndex = parseInt(currentMonsterId);
