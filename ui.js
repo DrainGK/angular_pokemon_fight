@@ -98,6 +98,8 @@ start.addEventListener("click", function () {
 });
 
 monsterButton.addEventListener("click", function () {
+  const dialogBox = document.getElementById("dialog-box");
+  dialogBox.style.display = 'none';
   sound.loadSound(0);
   sound.play();
   transition();
@@ -119,6 +121,8 @@ overlay.addEventListener("click", function () {
 });
 
 fightButton.addEventListener("click", function () {
+  const dialogBox = document.getElementById("dialog-box");
+  dialogBox.style.display = 'none';
   sound.loadSound(0);
   sound.play();
   transition();
@@ -131,6 +135,8 @@ fightButton.addEventListener("click", function () {
 });
 
 shopButton.addEventListener("click", function () {
+  const dialogBox = document.getElementById("dialog-box");
+  dialogBox.style.display = 'none';
   loadArena = false;
   sound.loadSound(0);
   sound.play();
@@ -144,6 +150,8 @@ shopButton.addEventListener("click", function () {
   }, 1000);
 });
 questButton.addEventListener("click", function () {
+  const dialogBox = document.getElementById("dialog-box");
+  dialogBox.style.display = 'none';
   sound.loadSound(0);
   sound.play();
   transition();

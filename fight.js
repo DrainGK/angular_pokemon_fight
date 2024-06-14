@@ -4,10 +4,11 @@ let groupIndex = 1;
 let indexPNJ = 0;
 
 function setupChallengers() {
+  loadArena = false;
   const challengersContainer = document.querySelector(".challengers-icon");
   const challengersSelection = document.createElement("div");
   challengersSelection.className = "challengers-container";
-  challengersContainer.innerHTML ?? ""; // Clear the container to avoid duplicating content
+  challengersContainer.innerHTML = ""; // Clear the container to avoid duplicating content
 
   // Loop through each group in the challengers object (e.g., villagers, temple)
   Object.entries(challengers).forEach(([groupName, members]) => {
@@ -232,25 +233,30 @@ function clearElementContents(element) {
 }
 
 function allKO() {
-  const challengersIcon = document.querySelector(".challengers-icon");
 
   if (
     currentPNJ &&
     currentPNJ.team.every((monster) => monster.currentHp <= 0)
   ) {
+    loadArena = false;
     gold += currentPNJ.reward;
     goldText.innerText = `${gold}`;
     clearElementContents(screen); // Clearing the content explicitly
     screen.innerHTML = menuCat.fight;
-    setupArena(currentPNJ, indexPNJ, "");
 
     winScreen();
-    unlockNextPNJ(); // Unlock the next PNJ
   }
 }
 
 function winScreen() {
-  console.log("t'as gagne gros pd");
+  console.log(loadArena);
+  transition();
+  setTimeout(() => {
+    screen.innerHTML = menuCat.fight;
+    setupChallengers();
+    goldUI.style.display = "none";
+  }, 1000);
+  unlockNextPNJ(); // Unlock the next PNJ
 }
 
 function unlockNextPNJ() {
