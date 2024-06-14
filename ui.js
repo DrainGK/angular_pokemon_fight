@@ -65,7 +65,7 @@ populateSelect();
 
 iconTest.addEventListener("click", function () {
   toggleMenu();
-  soundSetting()
+  soundSetting();
   sound.loadSound(6);
   sound.play();
 });
@@ -82,6 +82,18 @@ start.addEventListener("click", function () {
     polygon.style.display = "none";
     const button = document.querySelector(".button-container");
     button.style.display = "none";
+    showDialog(introDialog, () => {
+      sound.loadSound(0);
+      sound.play();
+      transition();
+      setTimeout(() => {
+        getRole();
+        screen.innerHTML = menuCat.team;
+        attachEventListeners();
+        displayTeam();
+        goldUI.style.display = "none";
+      }, 1000);
+    });
   }, 1000);
 });
 
@@ -206,34 +218,32 @@ function toggleMenu() {
 
 audioPara.addEventListener("click", function () {
   const items = document.querySelectorAll(".audio-item");
-  const audioRange = document.querySelectorAll(".audio-range")
-  if(this.classList.contains("audio-open")){
+  const audioRange = document.querySelectorAll(".audio-range");
+  if (this.classList.contains("audio-open")) {
     this.classList.remove("audio-open");
     this.classList.add("audio-close");
     items.forEach((item) => {
       item.classList.remove("audio-item-open");
-    })
-    audioRange.forEach((item)=>{
+    });
+    audioRange.forEach((item) => {
       item.classList.remove("audio-item-open");
     });
-    
-    } else {
-      
-      this.classList.add("audio-open");
-      this.classList.remove("audio-close");
-      items.forEach((item) => {
+  } else {
+    this.classList.add("audio-open");
+    this.classList.remove("audio-close");
+    items.forEach((item) => {
+      item.classList.add("audio-item-open");
+    });
+    audioRange.forEach((item) => {
+      setTimeout(() => {
         item.classList.add("audio-item-open");
-      })
-      audioRange.forEach((item)=>{
-        setTimeout(() => {
-          item.classList.add("audio-item-open");
-        },300)
-      });
+      }, 300);
+    });
   }
 });
 
-document.querySelectorAll('.audio-range').forEach(range => {
-  range.addEventListener('click', function(event) {
+document.querySelectorAll(".audio-range").forEach((range) => {
+  range.addEventListener("click", function (event) {
     event.stopPropagation();
   });
 });
@@ -270,35 +280,35 @@ function transition() {
   });
 }
 
-function soundSetting(){
+function soundSetting() {
   const musicInput = document.getElementById("music");
   const soundInput = document.getElementById("sound");
 
-  musicInput.addEventListener("change", function(){
+  musicInput.addEventListener("change", function () {
     music.setVolume(this.value);
-  })
-  soundInput.addEventListener("change", function(){
+  });
+  soundInput.addEventListener("change", function () {
     sound.setVolume(this.value);
-  })
+  });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const waveContainer = document.getElementById('waveContainer');
+document.addEventListener("DOMContentLoaded", () => {
+  const waveContainer = document.getElementById("waveContainer");
   music.setVolume(0.2);
-  music.loadMusic(4,true);
+  music.loadMusic(4, true);
   music.play();
 
-  waveContainer.addEventListener('click', () => {
+  waveContainer.addEventListener("click", () => {
     // isPlaying = !isPlaying;
     if (music.isPaused) {
       music.setVolume(0.2);
       music.play();
       playWave();
-      waveContainer.classList.remove('paused');
+      waveContainer.classList.remove("paused");
     } else {
       music.pause();
       pauseWave();
-      waveContainer.classList.add('paused');
+      waveContainer.classList.add("paused");
     }
   });
 });
@@ -306,23 +316,27 @@ document.addEventListener('DOMContentLoaded', () => {
 const originalPaths = [];
 
 // Initialize originalPaths with the original 'd' attribute values
-document.querySelectorAll('#wave path').forEach((path, index) => {
-  originalPaths[index] = path.getAttribute('d');
+document.querySelectorAll("#wave path").forEach((path, index) => {
+  originalPaths[index] = path.getAttribute("d");
 });
 
 function pauseWave() {
-  const paths = document.querySelectorAll('#wave path');
+  const paths = document.querySelectorAll("#wave path");
   paths.forEach((path, index) => {
     const originalD = originalPaths[index];
     const xCoordinate = originalD.match(/M(\d+.\d+),/)[1]; // Extract the x-coordinate from the original 'd' attribute
-    path.setAttribute('d', `M${xCoordinate},15L${xCoordinate - 0.13},15A1,1,0,0,0,${xCoordinate - 0.91},16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H${xCoordinate - 0.09}Z`);
+    path.setAttribute(
+      "d",
+      `M${xCoordinate},15L${xCoordinate - 0.13},15A1,1,0,0,0,${
+        xCoordinate - 0.91
+      },16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H${xCoordinate - 0.09}Z`
+    );
   });
 }
 
 function playWave() {
-  const paths = document.querySelectorAll('#wave path');
+  const paths = document.querySelectorAll("#wave path");
   paths.forEach((path, index) => {
-    path.setAttribute('d', originalPaths[index]); // Restore the original 'd' attributes
+    path.setAttribute("d", originalPaths[index]); // Restore the original 'd' attributes
   });
 }
-

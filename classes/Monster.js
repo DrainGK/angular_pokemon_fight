@@ -19,12 +19,13 @@ class Monster {
   }
 
   fight(opponent) {
-    if (!this.rest && opponent.isDodge === false && this.currentHp > 0){
+    setTimeout(()=>updateArena(`${this.name}'s is attacking ${opponent.name}`),200);
+    if ((!this.rest && this.currentHp > 0) || opponent.isDodge === false) {
         sound.loadSound(4);
         sound.play();
 
         if (Math.random() < 0.05 - this.luck * 0.005) {
-            updateArena(`${this.name}'s attack missed`);
+            setTimeout(() => updateArena(`${this.name}'s attack missed`), 500);
             return 0;
         }
 
@@ -33,17 +34,16 @@ class Monster {
 
         if (Math.random() < this.luck * 0.01) {
             damage *= 1.5;
-            setTimeout(() => updateArena("Critical Hit!"), 100);
+            setTimeout(() => updateArena("Critical Hit!"), 500);
         }
 
-        setTimeout(() => updateArena(`Damage dealt by ${this.name} to ${opponent.name}: ${damage}`), 500);
         if(damage === 0) damage = 0.5;
         opponent.currentHp -= damage;  // Reduce opponent's life
 
-        setTimeout(() => updateArena(`Remaining life of ${opponent.name}: ${opponent.currentHp}`), 1000);
+
         return damage;  // Returning damage for information, not necessary for functionality
     } else if(this.rest) {
-        setTimeout(() => updateArena(`${this.name} is too tired to perform an attack`), 100);
+        setTimeout(() => updateArena(`${this.name} is too tired to perform an attack`), 500);
         this.rest = false; // Reset rest status, but consider the gameplay logic
     }
 }
@@ -52,24 +52,27 @@ class Monster {
     if (!this.rest && opponent.isDodge === false && this.currentHp > 0) {
       // Correct use of boolean check
       this.fight(opponent);
-      updateArena(`${this.name} is attacking again`);
+      setTimeout(() => updateArena(`${this.name} is attacking again`), 500);
+      
       this.fight(opponent);
-      updateArena(`${this.name} is tired`);
+      setTimeout(() => updateArena(`${this.name} is tired`), 700);
       this.rest = true; // Monster needs to rest after a super attack
     } else {
-      updateArena(`${this.name} is too tired to perform a super attack`);
+      setTimeout(() => updateArena(`${this.name} is too tired to perform an attack`), 500);
       this.rest = false; // Reset rest status, but consider the gameplay logic
     }
   }
 
   dodge() {
+    setTimeout(() => updateArena(`${this.name} try to dodge`), 200);
     let baseDodgeChance = 0.25;
     let maxDodgeChance = 0.5;
     let luckContribution =
-      (this.luck / 10) * (maxDodgeChance - baseDodgeChance);
+    (this.luck / 10) * (maxDodgeChance - baseDodgeChance);
     let totalDodgeChance = baseDodgeChance + luckContribution;
     console.log(Math.random() < totalDodgeChance);
     if(Math.random() < totalDodgeChance){
+      setTimeout(() => updateArena(`${this.name} is dodging`), 500);
       this.isDodge = !this.isDodge;
     }
     return Math.random() < totalDodgeChance;
@@ -86,6 +89,7 @@ class Monster {
     if (this.currentHp <= 0) {
       sound.loadSound(17);
       sound.play();
+      setTimeout(() => updateArena(`${this.name} is KO`), 500);
       console.log(`${this.name} is KO`);
       currentMonsterId++;
       if(team[currentMonsterId]) currentMonster = team[currentMonsterId];
