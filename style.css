@@ -1832,6 +1832,7 @@ audio{
     height: 10%;
     gap: 0 1rem;
     display: flex;
+    position: relative;
 }
 
 #continue-btn{
@@ -1842,6 +1843,9 @@ audio{
     border-radius: 50px;
     color: white;
     cursor: pointer;
+    position: absolute;
+
+    right: 1rem;
 }
 
 
